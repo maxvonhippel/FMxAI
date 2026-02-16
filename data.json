@@ -7,6 +7,10 @@
     {
       "name": "Secure Program Synthesis",
       "color": "#ec4899"
+    },
+    {
+      "name": "Legal Tech",
+      "color": "#10b981"
     }
   ],
   "organizations": [
@@ -34,6 +38,21 @@
       "name": "Sigil Logic",
       "url": "https://sigillogic.com/",
       "categories": ["Secure Program Synthesis"]
+    },
+    {
+      "name": "Higher Order Co",
+      "url": "https://higherorderco.com/",
+      "categories": ["Secure Program Synthesis"]
+    },
+    {
+      "name": "NDEA",
+      "url": "https://ndea.com/",
+      "categories": ["Secure Program Synthesis"]
+    },
+    {
+      "name": "Benchify",
+      "url": "https://benchify.com/",
+      "categories": ["Legal Tech"]
     }
   ]
 }

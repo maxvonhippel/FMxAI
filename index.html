@@ -29,6 +29,21 @@
             font-size: 1.5rem;
             font-weight: 600;
         }
+        p {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        a {
+            color: #fff;
+            text-decoration: underline;
+        }
+        a:hover {
+            color: #e2e8f0;
+        }
+        #venn {
+            display: block;
+            margin: 0 auto;
+        }
         .circle {
             fill-opacity: 0.15;
             stroke-width: 2;
@@ -74,18 +89,22 @@
     </div>
 
     <script>
-        const width = 700, height = 500;
+        const width = 1000, height = 600;
         const svg = d3.select('#venn')
             .attr('width', width)
             .attr('height', height);
 
         d3.json('data.json').then(data => {
-            const radius = 140;
-            const overlap = 70;
+            const centerX = width/2 - 100;
+            const centerY = height/2;
 
+            // Mathematics and Secure Program Synthesis overlap, Legal Tech is separate
+            const overlap = 80;
+            const radius = 160;
             const circles = [
-                { x: width/2 - overlap, y: height/2, r: radius, ...data.categories[0] },
-                { x: width/2 + overlap, y: height/2, r: radius, ...data.categories[1] }
+                { x: centerX - overlap, y: centerY, r: radius, ...data.categories[0] },
+                { x: centerX + overlap, y: centerY, r: radius, ...data.categories[1] },
+                { x: centerX + 450, y: centerY, r: 100, ...data.categories[2] }
             ];
 
             // Draw circles
@@ -109,28 +128,61 @@
                 .attr('fill', d => d.color)
                 .text(d => d.name);
 
-            // Position organizations
+            // Position organizations based on their categories
             data.organizations.forEach(org => {
-                let x, y;
-                if (org.categories.length === 2) {
-                    // Intersection
-                    x = width/2 + (Math.random() - 0.5) * 30;
-                    y = height/2 + (Math.random() - 0.5) * 60;
-                } else if (org.categories[0] === data.categories[0].name) {
-                    // Left circle only
-                    const angle = Math.random() * Math.PI - Math.PI/2;
-                    const distance = 60 + Math.random() * 40;
-                    x = circles[0].x - distance * Math.cos(angle);
-                    y = circles[0].y + distance * Math.sin(angle);
-                } else {
-                    // Right circle only
-                    const angle = Math.random() * Math.PI + Math.PI/2;
-                    const distance = 60 + Math.random() * 40;
-                    x = circles[1].x - distance * Math.cos(angle);
-                    y = circles[1].y + distance * Math.sin(angle);
+                const catName = org.categories[0];
+
+                if (org.categories.length === 2 &&
+                    org.categories.includes("Mathematics") &&
+                    org.categories.includes("Secure Program Synthesis")) {
+                    // In the intersection - position at centerX (midpoint between circles)
+                    org.centerX = centerX;
+                    org.centerY = centerY;
+                    org.constraintRadius = 40;
+                } else if (catName === "Mathematics") {
+                    // Math only - position on LEFT side of Math circle, away from SPS
+                    org.centerX = circles[0].x - 70;
+                    org.centerY = circles[0].y;
+                    org.constraintRadius = 70;
+                } else if (catName === "Secure Program Synthesis") {
+                    // SPS only - position on RIGHT side of SPS circle, away from Math
+                    org.centerX = circles[1].x + 70;
+                    org.centerY = circles[1].y;
+                    org.constraintRadius = 70;
+                } else if (catName === "Legal Tech") {
+                    // Legal Tech - separate circle
+                    org.centerX = circles[2].x;
+                    org.centerY = circles[2].y;
+                    org.constraintRadius = 50;
                 }
-                org.x = x;
-                org.y = y;
+
+                // Initial random position
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * org.constraintRadius * 0.3;
+                org.x = org.centerX + distance * Math.cos(angle);
+                org.y = org.centerY + distance * Math.sin(angle);
+            });
+
+            // Use force simulation for collision-free positioning
+            // Increase collision radius to account for text labels
+            const simulation = d3.forceSimulation(data.organizations)
+                .force('collision', d3.forceCollide().radius(45))
+                .force('x', d3.forceX(d => d.centerX).strength(0.15))
+                .force('y', d3.forceY(d => d.centerY).strength(0.15))
+                .stop();
+
+            // Run simulation
+            for (let i = 0; i < 500; i++) simulation.tick();
+
+            // Constrain to regions
+            data.organizations.forEach(org => {
+                const dx = org.x - org.centerX;
+                const dy = org.y - org.centerY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist > org.constraintRadius) {
+                    org.x = org.centerX + (dx / dist) * org.constraintRadius;
+                    org.y = org.centerY + (dy / dist) * org.constraintRadius;
+                }
             });
 
             // Draw organizations
