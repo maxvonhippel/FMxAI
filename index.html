@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Venn Diagram</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        #container {
+            background: #1e293b;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        .circle {
+            fill-opacity: 0.15;
+            stroke-width: 2;
+            stroke-opacity: 0.6;
+        }
+        .label {
+            font-size: 14px;
+            font-weight: 600;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+        .org-link {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .org-link:hover circle {
+            r: 7;
+        }
+        .org-link:hover text {
+            font-weight: 600;
+        }
+        .org-circle {
+            fill: #fff;
+            stroke: #fff;
+            stroke-width: 2;
+        }
+        .org-text {
+            font-size: 12px;
+            fill: #e2e8f0;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Organizations in FM x AI</h1>
+        <br>
+        <p>
+            This website is intended to track organizations working in FMxAI and map the overlap between their respective projects. You can contribute <a href="https://github.com/maxvonhippel/FMxAI">here</a>.  We are working on building the community infrastructure for the FMxAI research community, and this website is part of that project.  If you're interested in getting involved, please email maxvh [at] hey [dot] com for more details!  Or, contact any of the listed organizations below directly.
+        </p>
+        <svg id="venn"></svg>
+    </div>
+
+    <script>
+        const width = 700, height = 500;
+        const svg = d3.select('#venn')
+            .attr('width', width)
+            .attr('height', height);
+
+        d3.json('data.json').then(data => {
+            const radius = 140;
+            const overlap = 70;
+
+            const circles = [
+                { x: width/2 - overlap, y: height/2, r: radius, ...data.categories[0] },
+                { x: width/2 + overlap, y: height/2, r: radius, ...data.categories[1] }
+            ];
+
+            // Draw circles
+            svg.selectAll('.circle')
+                .data(circles)
+                .join('circle')
+                .attr('class', 'circle')
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y)
+                .attr('r', d => d.r)
+                .attr('fill', d => d.color)
+                .attr('stroke', d => d.color);
+
+            // Draw circle labels
+            svg.selectAll('.label')
+                .data(circles)
+                .join('text')
+                .attr('class', 'label')
+                .attr('x', d => d.x)
+                .attr('y', d => d.y - d.r - 15)
+                .attr('fill', d => d.color)
+                .text(d => d.name);
+
+            // Position organizations
+            data.organizations.forEach(org => {
+                let x, y;
+                if (org.categories.length === 2) {
+                    // Intersection
+                    x = width/2 + (Math.random() - 0.5) * 30;
+                    y = height/2 + (Math.random() - 0.5) * 60;
+                } else if (org.categories[0] === data.categories[0].name) {
+                    // Left circle only
+                    const angle = Math.random() * Math.PI - Math.PI/2;
+                    const distance = 60 + Math.random() * 40;
+                    x = circles[0].x - distance * Math.cos(angle);
+                    y = circles[0].y + distance * Math.sin(angle);
+                } else {
+                    // Right circle only
+                    const angle = Math.random() * Math.PI + Math.PI/2;
+                    const distance = 60 + Math.random() * 40;
+                    x = circles[1].x - distance * Math.cos(angle);
+                    y = circles[1].y + distance * Math.sin(angle);
+                }
+                org.x = x;
+                org.y = y;
+            });
+
+            // Draw organizations
+            const orgGroups = svg.selectAll('.org-link')
+                .data(data.organizations)
+                .join('g')
+                .attr('class', 'org-link')
+                .on('click', (e, d) => window.open(d.url, '_blank'));
+
+            orgGroups.append('circle')
+                .attr('class', 'org-circle')
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y)
+                .attr('r', 5);
+
+            orgGroups.append('text')
+                .attr('class', 'org-text')
+                .attr('x', d => d.x)
+                .attr('y', d => d.y + 20)
+                .text(d => d.name);
+        });
+    </script>
+</body>
+</html>

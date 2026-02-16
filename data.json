@@ -1,0 +1,39 @@
+{
+  "categories": [
+    {
+      "name": "Mathematics",
+      "color": "#6366f1"
+    },
+    {
+      "name": "Secure Program Synthesis",
+      "color": "#ec4899"
+    }
+  ],
+  "organizations": [
+    {
+      "name": "Axiom",
+      "url": "https://axiommath.ai/",
+      "categories": ["Mathematics", "Secure Program Synthesis"]
+    },
+    {
+      "name": "Harmonic",
+      "url": "https://harmonic.fun/",
+      "categories": ["Mathematics"]
+    },
+    {
+      "name": "Principia Labs",
+      "url": "https://www.principialabs.org/",
+      "categories": ["Mathematics"]
+    },
+    {
+      "name": "Theorem",
+      "url": "https://theorem.dev/",
+      "categories": ["Secure Program Synthesis"]
+    },
+    {
+      "name": "Sigil Logic",
+      "url": "https://sigillogic.com/",
+      "categories": ["Secure Program Synthesis"]
+    }
+  ]
+}
