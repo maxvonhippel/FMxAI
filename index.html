@@ -703,9 +703,9 @@
             console.log("Final positions:", data.organizations.map(o => `${o.name}: (${o.x}, ${o.y})`));
 
             // Now optimize circle label positions
-            // Generate candidate positions for each circle label (24 directions for more options)
-            const labelDistance = 50; // Distance from circle edge to ensure label clears the circle
-            const numDirections = 24;
+            // Generate candidate positions for each circle label (32 directions for maximum options)
+            const labelDistance = 60; // Distance from circle edge to ensure label clears the circle
+            const numDirections = 32;
             const directions = [];
             for (let i = 0; i < numDirections; i++) {
                 const angle = (i / numDirections) * 2 * Math.PI;
@@ -726,12 +726,12 @@
                 }))
             );
 
-            // Helper: estimate text bounding box for a label
+            // Helper: estimate text bounding box for a label with generous padding
             const estimateTextBounds = (text, x, y) => {
                 const fontSize = 14;
-                const charWidth = 9; // Approximate width per character at 14px (increased for safety)
-                const textWidth = text.length * charWidth + 10; // Add extra padding
-                const textHeight = fontSize * 1.4; // Add more vertical padding
+                const charWidth = 10; // Conservative estimate
+                const textWidth = text.length * charWidth + 20; // Generous padding
+                const textHeight = fontSize * 1.5; // Generous vertical padding
 
                 // text-anchor: middle means text is centered at x
                 // y is the baseline, so text extends above it
@@ -739,7 +739,7 @@
                     left: x - textWidth / 2,
                     right: x + textWidth / 2,
                     top: y - textHeight,
-                    bottom: y + 6 // Small space below baseline
+                    bottom: y + 8
                 };
             };
 
@@ -772,8 +772,8 @@
 
             // Helper: check if two text bounding boxes overlap
             const textBoundsOverlap = (bounds1, bounds2) => {
-                // Add small padding to ensure visual separation
-                const padding = 10;
+                // Add generous padding to ensure visual separation
+                const padding = 15; // Increased from 10
                 return !(
                     bounds1.right + padding < bounds2.left ||
                     bounds2.right + padding < bounds1.left ||
@@ -832,21 +832,31 @@
             });
 
             // Constraint 2: No two labels can overlap (using actual text bounds)
+            let overlapConstraints = 0;
             for (let i = 0; i < circles.length; i++) {
                 for (let j = i + 1; j < circles.length; j++) {
                     const positionsI = validLabelPositions[i];
                     const positionsJ = validLabelPositions[j];
 
+                    let pairConstraints = 0;
                     for (let pi = 0; pi < positionsI.length; pi++) {
                         for (let pj = 0; pj < positionsJ.length; pj++) {
                             if (labelsOverlap(positionsI[pi], circles[i].name, positionsJ[pj], circles[j].name)) {
                                 // If these positions overlap, they can't both be true
                                 sat.addClause([-labelVars[i][pi], -labelVars[j][pj]]);
+                                pairConstraints++;
+                                overlapConstraints++;
                             }
                         }
                     }
+
+                    // Log if there are few valid non-overlapping combinations
+                    if (pairConstraints > 0 && pairConstraints >= positionsI.length * positionsJ.length * 0.8) {
+                        console.warn(`  High overlap between ${circles[i].name} and ${circles[j].name}: ${pairConstraints}/${positionsI.length * positionsJ.length} position pairs conflict`);
+                    }
                 }
             }
+            console.log(`  Added ${overlapConstraints} anti-overlap constraints between labels`);
 
             console.log(`SAT problem: ${sat.numVars} variables, ${sat.clauses.length} clauses`);
             const satSolution = sat.solve();
@@ -878,23 +888,38 @@
                 });
 
                 // Verify no overlaps (SAT should guarantee this)
+                console.log("Verifying label placement:");
                 let hasOverlap = false;
                 for (let i = 0; i < circles.length; i++) {
                     for (let j = i + 1; j < circles.length; j++) {
                         const pos1 = { x: circles[i].labelX, y: circles[i].labelY };
                         const pos2 = { x: circles[j].labelX, y: circles[j].labelY };
-                        if (labelsOverlap(pos1, circles[i].name, pos2, circles[j].name)) {
-                            console.error(`ERROR: Labels ${circles[i].name} and ${circles[j].name} overlap despite SAT solution!`);
-                            const bounds1 = estimateTextBounds(circles[i].name, pos1.x, pos1.y);
-                            const bounds2 = estimateTextBounds(circles[j].name, pos2.x, pos2.y);
-                            console.error(`  ${circles[i].name} bounds:`, bounds1);
-                            console.error(`  ${circles[j].name} bounds:`, bounds2);
+                        const bounds1 = estimateTextBounds(circles[i].name, pos1.x, pos1.y);
+                        const bounds2 = estimateTextBounds(circles[j].name, pos2.x, pos2.y);
+
+                        const overlaps = labelsOverlap(pos1, circles[i].name, pos2, circles[j].name);
+
+                        // Special check for problematic pairs
+                        if ((circles[i].name === "Axiom" && circles[j].name === "Logical Intelligence") ||
+                            (circles[i].name === "Logical Intelligence" && circles[j].name === "Axiom")) {
+                            console.log(`  Checking ${circles[i].name} vs ${circles[j].name}:`);
+                            console.log(`    ${circles[i].name}: (${pos1.x.toFixed(1)}, ${pos1.y.toFixed(1)})`, bounds1);
+                            console.log(`    ${circles[j].name}: (${pos2.x.toFixed(1)}, ${pos2.y.toFixed(1)})`, bounds2);
+                            console.log(`    Overlaps: ${overlaps}`);
+                        }
+
+                        if (overlaps) {
+                            console.error(`ERROR: Labels ${circles[i].name} and ${circles[j].name} overlap!`);
+                            console.error(`  ${circles[i].name}:`, bounds1);
+                            console.error(`  ${circles[j].name}:`, bounds2);
                             hasOverlap = true;
                         }
                     }
                 }
                 if (!hasOverlap) {
                     console.log("✓ SAT solution verified: no label overlaps");
+                } else {
+                    console.error("✗ Label overlaps detected - SAT constraints insufficient");
                 }
             } else {
                 console.error("SAT solver failed - using greedy fallback");
