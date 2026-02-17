@@ -335,7 +335,7 @@
 
             // Force-directed layout for circle positioning
             console.log("Computing circle layout...");
-            const iterations = 500;
+            const iterations = 1000; // Increased for better convergence
             const dt = 0.1;
 
             for (let iter = 0; iter < iterations; iter++) {
@@ -364,7 +364,9 @@
                             circles[j].fy -= ny * force;
                         } else {
                             // Shouldn't overlap - repel if too close
-                            const minSeparation = circles[i].r + circles[j].r + 80; // 80px buffer
+                            // Add extra space for labels: estimate label reach as ~80px from circle edge
+                            const labelSpace = 160; // Space needed for labels on both circles
+                            const minSeparation = circles[i].r + circles[j].r + labelSpace;
                             if (dist < minSeparation) {
                                 const force = (minSeparation - dist) * 0.02;
                                 circles[i].fx -= nx * force;
