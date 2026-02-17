@@ -25,6 +25,7 @@
     {
       "name": "Axiom",
       "url": "https://axiommath.ai/",
+      "careers": "https://axiommath.ai/join-us",
       "categories": ["Mathematics", "Secure Program Synthesis", "Models"]
     },
     {
@@ -45,11 +46,13 @@
     {
       "name": "Theorem",
       "url": "https://theorem.dev/",
+      "careers": "https://theorem.dev/careers/",
       "categories": ["Secure Program Synthesis"]
     },
     {
       "name": "Sigil Logic",
       "url": "https://sigillogic.com/",
+      "careers": "https://sigillogic.com/careers",
       "categories": ["Secure Program Synthesis"]
     },
     {
@@ -60,6 +63,7 @@
     {
       "name": "NDEA",
       "url": "https://ndea.com/",
+      "careers": "https://ndea.com/join",
       "categories": ["Secure Program Synthesis", "Models"]
     },
     {
