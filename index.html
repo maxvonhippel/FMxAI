@@ -158,36 +158,27 @@
         #venn:active {
             cursor: grabbing;
         }
-        .jobs-table {
+        .jobs-list {
             width: 100%;
-            border-collapse: collapse;
             margin-top: 1rem;
         }
-        .jobs-table th {
-            text-align: left;
-            padding: 0.75rem;
-            background: #334155;
-            color: #f1f5f9;
-            font-weight: 600;
-            border-bottom: 2px solid #475569;
-        }
-        .jobs-table td {
-            padding: 0.75rem;
-            border-bottom: 1px solid #334155;
-        }
-        .jobs-table tr:hover {
-            background: #334155;
-        }
-        .jobs-table a {
-            color: #60a5fa;
+        .jobs-list a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #e2e8f0;
             text-decoration: none;
+            border-bottom: 1px solid #334155;
+            transition: background 0.2s;
         }
-        .jobs-table a:hover {
-            text-decoration: underline;
+        .jobs-list a:hover {
+            background: #334155;
         }
-        .no-careers {
-            color: #94a3b8;
-            font-style: italic;
+        .jobs-list a::after {
+            content: '→';
+            font-size: 1.25rem;
+            color: #60a5fa;
         }
         .section-title {
             font-size: 1.25rem;
@@ -260,17 +251,9 @@
         </div>
         <div id="right-panel">
             <div class="section-title">Career Opportunities</div>
-            <table class="jobs-table">
-                <thead>
-                    <tr>
-                        <th>Organization</th>
-                        <th>Careers Page</th>
-                    </tr>
-                </thead>
-                <tbody id="jobs-tbody">
-                    <!-- Will be populated by JavaScript -->
-                </tbody>
-            </table>
+            <div class="jobs-list" id="jobs-list">
+                <!-- Will be populated by JavaScript -->
+            </div>
         </div>
     </div>
 
@@ -283,31 +266,17 @@
             .attr('style', 'max-width: 100%;');
 
         d3.json('data.json').then(data => {
-            // Populate jobs table - only show organizations with careers pages
-            const jobsTbody = document.getElementById('jobs-tbody');
+            // Populate jobs list - only show organizations with careers pages
+            const jobsList = document.getElementById('jobs-list');
             data.organizations
                 .filter(org => org.careers) // Only include orgs with careers pages
                 .sort((a, b) => a.name.localeCompare(b.name))
                 .forEach(org => {
-                    const row = document.createElement('tr');
-
-                    const nameCell = document.createElement('td');
-                    const nameLink = document.createElement('a');
-                    nameLink.href = org.url;
-                    nameLink.target = '_blank';
-                    nameLink.textContent = org.name;
-                    nameCell.appendChild(nameLink);
-
-                    const careersCell = document.createElement('td');
-                    const careersLink = document.createElement('a');
-                    careersLink.href = org.careers;
-                    careersLink.target = '_blank';
-                    careersLink.textContent = 'View Careers';
-                    careersCell.appendChild(careersLink);
-
-                    row.appendChild(nameCell);
-                    row.appendChild(careersCell);
-                    jobsTbody.appendChild(row);
+                    const link = document.createElement('a');
+                    link.href = org.careers;
+                    link.target = '_blank';
+                    link.textContent = org.name;
+                    jobsList.appendChild(link);
                 });
 
             // Create main group for all content (so zoom applies to everything)
