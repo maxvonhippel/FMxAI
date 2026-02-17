@@ -88,10 +88,21 @@
             padding: 1rem;
             margin: 0;
         }
+        #header {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        #header h1 {
+            margin-bottom: 0.5rem;
+        }
+        #header p {
+            margin: 0;
+            color: #cbd5e1;
+        }
         #main-container {
             display: flex;
             gap: 1rem;
-            height: calc(100vh - 2rem);
+            height: calc(100vh - 8rem);
         }
         #left-panel {
             flex: 1;
@@ -187,6 +198,7 @@
         @media (max-width: 1024px) {
             #main-container {
                 flex-direction: column;
+                height: auto;
             }
             #right-panel {
                 width: 100%;
@@ -194,6 +206,9 @@
             }
             #left-panel {
                 min-height: 500px;
+            }
+            #header {
+                text-align: left;
             }
         }
         .circle {
@@ -231,12 +246,14 @@
     </style>
 </head>
 <body>
+    <div id="header">
+        <h1>Formal Methods x Artificial Intelligence</h1>
+        <p>
+            This website tracks the FMxAI research community, mapping the landscape of groups, resources and projects. The site is <a href="https://github.com/maxvonhippel/FMxAI">open source</a>. Contact: maxvh [at] hey [dot] com
+        </p>
+    </div>
     <div id="main-container">
         <div id="left-panel">
-            <h1>Formal Methods x Artificial Intelligence</h1>
-            <p style="margin-bottom: 1.5rem;">
-                This website tracks the FMxAI research community, mapping the landscape of groups, resources and projects. The site is <a href="https://github.com/maxvonhippel/FMxAI">open source</a>. Contact: maxvh [at] hey [dot] com
-            </p>
             <div id="venn-container">
                 <svg id="venn"></svg>
             </div>
