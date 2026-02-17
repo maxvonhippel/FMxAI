@@ -11,18 +11,31 @@
     {
       "name": "Legal Tech",
       "color": "#10b981"
+    },
+    {
+      "name": "Accelerator",
+      "color": "#f59e0b"
+    },
+    {
+      "name": "Models",
+      "color": "#8b5cf6"
     }
   ],
   "organizations": [
     {
       "name": "Axiom",
       "url": "https://axiommath.ai/",
-      "categories": ["Mathematics", "Secure Program Synthesis"]
+      "categories": ["Mathematics", "Secure Program Synthesis", "Models"]
     },
     {
       "name": "Harmonic",
       "url": "https://harmonic.fun/",
-      "categories": ["Mathematics"]
+      "categories": ["Mathematics", "Models"]
+    },
+    {
+      "name": "Logical Intelligence",
+      "url": "https://logicalintelligence.com/",
+      "categories": ["Mathematics", "Models"]
     },
     {
       "name": "Principia Labs",
@@ -47,12 +60,22 @@
     {
       "name": "NDEA",
       "url": "https://ndea.com/",
-      "categories": ["Secure Program Synthesis"]
+      "categories": ["Secure Program Synthesis", "Models"]
     },
     {
       "name": "Benchify",
       "url": "https://benchify.com/",
       "categories": ["Legal Tech"]
+    },
+    {
+      "name": "AI Safety Founders",
+      "url": "https://aisfounders.com/",
+      "categories": ["Accelerator"]
+    },
+    {
+      "name": "Seldon Lab",
+      "url": "https://seldonlab.com/",
+      "categories": ["Accelerator"]
     }
   ]
 }
