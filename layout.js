@@ -241,13 +241,14 @@ class UnifiedLayoutOptimizer {
 
     /**
      * Generate candidate label positions for each circle
+     * Filter out positions that overlap with ANY circle
      */
     generateLabelCandidates(circleCandidates) {
         const referenceCircles = circleCandidates[0];
-        const numDirections = 24;
-        const labelDistance = 65;
+        const numDirections = 32; // More candidates for better options
+        const labelDistance = 70; // More distance from circle edge
 
-        return referenceCircles.map(circle => {
+        return referenceCircles.map((circle, circleIdx) => {
             const candidates = [];
 
             for (let i = 0; i < numDirections; i++) {
@@ -255,7 +256,29 @@ class UnifiedLayoutOptimizer {
                 const x = circle.x + (circle.r + labelDistance) * Math.cos(angle);
                 const y = circle.y + (circle.r + labelDistance) * Math.sin(angle);
 
-                candidates.push({ x, y, angle: i * 360 / numDirections });
+                // Check if this label position overlaps with ANY circle
+                let overlapsAnyCircle = false;
+                for (const otherCircle of referenceCircles) {
+                    if (this.labelOverlapsCircle({ x, y }, circle.name, otherCircle)) {
+                        overlapsAnyCircle = true;
+                        break;
+                    }
+                }
+
+                // Only include if it doesn't overlap any circle
+                if (!overlapsAnyCircle) {
+                    candidates.push({
+                        x,
+                        y,
+                        angle: i * 360 / numDirections,
+                        direction: `${(i * 360 / numDirections).toFixed(0)}°`
+                    });
+                }
+            }
+
+            // Log if we have few valid positions
+            if (candidates.length < 8) {
+                console.warn(`${circle.name} label has only ${candidates.length} valid positions (filtered from ${numDirections})`);
             }
 
             return candidates;
@@ -307,21 +330,26 @@ class UnifiedLayoutOptimizer {
         });
 
         // Constraint: No org overlaps
+        let orgOverlapConstraints = 0;
         for (let i = 0; i < data.organizations.length; i++) {
             for (let j = i + 1; j < data.organizations.length; j++) {
                 for (let pi = 0; pi < orgCandidates[i].length; pi++) {
                     for (let pj = 0; pj < orgCandidates[j].length; pj++) {
                         if (this.positionsOverlap(orgCandidates[i][pi], orgCandidates[j][pj], 60)) {
                             sat.addClause([-orgVars[i][pi], -orgVars[j][pj]]);
+                            orgOverlapConstraints++;
                         }
                     }
                 }
             }
         }
+        console.log(`Added ${orgOverlapConstraints} org-org anti-overlap constraints`);
 
         // Constraint: No label overlaps (with each other)
+        let labelOverlapConstraints = 0;
         for (let i = 0; i < circles.length; i++) {
             for (let j = i + 1; j < circles.length; j++) {
+                let pairConstraints = 0;
                 for (let pi = 0; pi < labelCandidates[i].length; pi++) {
                     for (let pj = 0; pj < labelCandidates[j].length; pj++) {
                         if (this.labelsOverlap(
@@ -329,24 +357,23 @@ class UnifiedLayoutOptimizer {
                             labelCandidates[j][pj], circles[j].name
                         )) {
                             sat.addClause([-labelVars[i][pi], -labelVars[j][pj]]);
+                            pairConstraints++;
+                            labelOverlapConstraints++;
                         }
                     }
                 }
+
+                // Warn if too many conflicts between a pair
+                const totalPairs = labelCandidates[i].length * labelCandidates[j].length;
+                if (pairConstraints > totalPairs * 0.8) {
+                    console.warn(`High overlap between ${circles[i].name} and ${circles[j].name} labels: ${pairConstraints}/${totalPairs} position pairs conflict`);
+                }
             }
         }
+        console.log(`Added ${labelOverlapConstraints} label-label anti-overlap constraints`);
 
-        // Constraint: No label overlaps with any circle
-        circles.forEach((circle, circleIdx) => {
-            labelCandidates[circleIdx].forEach((labelPos, labelIdx) => {
-                for (const otherCircle of circles) {
-                    if (this.labelOverlapsCircle(labelPos, circle.name, otherCircle)) {
-                        // This label position overlaps a circle, so it's invalid
-                        // We can't just mark it invalid after the fact, so we need to filter earlier
-                        // For now, we'll handle this in candidate generation
-                    }
-                }
-            });
-        });
+        // Note: Label-circle overlap is handled by filtering in generateLabelCandidates
+        // All candidates in labelCandidates are already guaranteed not to overlap any circle
 
         return { orgVars, labelVars, circles };
     }
@@ -393,18 +420,18 @@ class UnifiedLayoutOptimizer {
     }
 
     /**
-     * Get text bounding box
+     * Get text bounding box with conservative estimates
      */
     getTextBounds(text, x, y) {
-        const charWidth = 10;
-        const textWidth = text.length * charWidth + 20;
-        const textHeight = 14 * 1.5;
+        const charWidth = 11; // Conservative character width estimate
+        const textWidth = text.length * charWidth + 30; // Extra padding
+        const textHeight = 14 * 1.6; // Conservative height
 
         return {
             left: x - textWidth / 2,
             right: x + textWidth / 2,
             top: y - textHeight,
-            bottom: y + 8
+            bottom: y + 10
         };
     }
 
@@ -435,6 +462,51 @@ class UnifiedLayoutOptimizer {
                 }
             }
         });
+
+        // Verify solution
+        console.log('Verifying solution...');
+        let hasErrors = false;
+
+        // Check label-label overlaps
+        for (let i = 0; i < circles.length; i++) {
+            for (let j = i + 1; j < circles.length; j++) {
+                if (this.labelsOverlap(
+                    { x: circles[i].labelX, y: circles[i].labelY }, circles[i].name,
+                    { x: circles[j].labelX, y: circles[j].labelY }, circles[j].name
+                )) {
+                    console.error(`✗ Labels overlap: ${circles[i].name} ↔ ${circles[j].name}`);
+                    hasErrors = true;
+                }
+            }
+        }
+
+        // Check label-circle overlaps
+        for (let i = 0; i < circles.length; i++) {
+            for (let j = 0; j < circles.length; j++) {
+                if (this.labelOverlapsCircle(
+                    { x: circles[i].labelX, y: circles[i].labelY },
+                    circles[i].name,
+                    circles[j]
+                )) {
+                    console.error(`✗ Label overlaps circle: ${circles[i].name} label ↔ ${circles[j].name} circle`);
+                    hasErrors = true;
+                }
+            }
+        }
+
+        // Check org-org overlaps
+        for (let i = 0; i < data.organizations.length; i++) {
+            for (let j = i + 1; j < data.organizations.length; j++) {
+                if (this.positionsOverlap(data.organizations[i], data.organizations[j], 60)) {
+                    console.error(`✗ Orgs overlap: ${data.organizations[i].name} ↔ ${data.organizations[j].name}`);
+                    hasErrors = true;
+                }
+            }
+        }
+
+        if (!hasErrors) {
+            console.log('✓ Solution verified: no overlaps detected');
+        }
 
         return { circles, organizations: data.organizations };
     }
