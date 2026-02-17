@@ -266,9 +266,10 @@
             .attr('style', 'max-width: 100%;');
 
         d3.json('data.json').then(data => {
-            // Populate jobs table
+            // Populate jobs table - only show organizations with careers pages
             const jobsTbody = document.getElementById('jobs-tbody');
             data.organizations
+                .filter(org => org.careers) // Only include orgs with careers pages
                 .sort((a, b) => a.name.localeCompare(b.name))
                 .forEach(org => {
                     const row = document.createElement('tr');
@@ -281,16 +282,11 @@
                     nameCell.appendChild(nameLink);
 
                     const careersCell = document.createElement('td');
-                    if (org.careers) {
-                        const careersLink = document.createElement('a');
-                        careersLink.href = org.careers;
-                        careersLink.target = '_blank';
-                        careersLink.textContent = 'View Careers';
-                        careersCell.appendChild(careersLink);
-                    } else {
-                        careersCell.className = 'no-careers';
-                        careersCell.textContent = 'No careers page';
-                    }
+                    const careersLink = document.createElement('a');
+                    careersLink.href = org.careers;
+                    careersLink.target = '_blank';
+                    careersLink.textContent = 'View Careers';
+                    careersCell.appendChild(careersLink);
 
                     row.appendChild(nameCell);
                     row.appendChild(careersCell);

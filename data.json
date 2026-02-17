@@ -19,6 +19,10 @@
     {
       "name": "Models",
       "color": "#8b5cf6"
+    },
+    {
+      "name": "Research Lab",
+      "color": "#06b6d4"
     }
   ],
   "organizations": [
@@ -80,6 +84,22 @@
       "name": "Seldon Lab",
       "url": "https://seldonlab.com/",
       "categories": ["Accelerator"]
+    },
+    {
+      "name": "FMAI Lab",
+      "url": "https://fmailab.doc.ic.ac.uk/",
+      "categories": ["Research Lab"]
+    },
+    {
+      "name": "Formal Computing and AI Lab",
+      "url": "https://sites.google.com/view/fcai-lab",
+      "categories": ["Research Lab"]
+    },
+    {
+      "name": "ForMACE Lab",
+      "url": "https://formace-lab.gitlab.io/webpage/",
+      "careers": "https://formace-lab.gitlab.io/webpage/posts/recruiting/",
+      "categories": ["Research Lab"]
     }
   ]
 }
