@@ -329,7 +329,7 @@ class UnifiedLayoutOptimizer {
             }
         });
 
-        // Constraint: No org overlaps
+        // Constraint: No org dot overlaps
         let orgOverlapConstraints = 0;
         for (let i = 0; i < data.organizations.length; i++) {
             for (let j = i + 1; j < data.organizations.length; j++) {
@@ -343,7 +343,27 @@ class UnifiedLayoutOptimizer {
                 }
             }
         }
-        console.log(`Added ${orgOverlapConstraints} org-org anti-overlap constraints`);
+        console.log(`Added ${orgOverlapConstraints} org-org dot anti-overlap constraints`);
+
+        // Constraint: No org LABEL overlaps (text below dots)
+        let orgLabelOverlapConstraints = 0;
+        for (let i = 0; i < data.organizations.length; i++) {
+            for (let j = i + 1; j < data.organizations.length; j++) {
+                for (let pi = 0; pi < orgCandidates[i].length; pi++) {
+                    for (let pj = 0; pj < orgCandidates[j].length; pj++) {
+                        // Org labels are placed at (x, y + 20) from the dot
+                        const labelPos1 = { x: orgCandidates[i][pi].x, y: orgCandidates[i][pi].y + 20 };
+                        const labelPos2 = { x: orgCandidates[j][pj].x, y: orgCandidates[j][pj].y + 20 };
+
+                        if (this.orgLabelsOverlap(labelPos1, data.organizations[i].name, labelPos2, data.organizations[j].name)) {
+                            sat.addClause([-orgVars[i][pi], -orgVars[j][pj]]);
+                            orgLabelOverlapConstraints++;
+                        }
+                    }
+                }
+            }
+        }
+        console.log(`Added ${orgLabelOverlapConstraints} org-org label anti-overlap constraints`);
 
         // Constraint: No label overlaps (with each other)
         let labelOverlapConstraints = 0;
@@ -388,13 +408,29 @@ class UnifiedLayoutOptimizer {
     }
 
     /**
-     * Check if two labels overlap
+     * Check if two labels overlap (for circle labels)
      */
     labelsOverlap(pos1, text1, pos2, text2) {
         const bounds1 = this.getTextBounds(text1, pos1.x, pos1.y);
         const bounds2 = this.getTextBounds(text2, pos2.x, pos2.y);
 
-        const padding = 15;
+        const padding = 20;
+        return !(
+            bounds1.right + padding < bounds2.left ||
+            bounds2.right + padding < bounds1.left ||
+            bounds1.bottom + padding < bounds2.top ||
+            bounds2.bottom + padding < bounds1.top
+        );
+    }
+
+    /**
+     * Check if two org labels overlap (for org labels)
+     */
+    orgLabelsOverlap(pos1, text1, pos2, text2) {
+        const bounds1 = this.getOrgTextBounds(text1, pos1.x, pos1.y);
+        const bounds2 = this.getOrgTextBounds(text2, pos2.x, pos2.y);
+
+        const padding = 20;
         return !(
             bounds1.right + padding < bounds2.left ||
             bounds2.right + padding < bounds1.left ||
@@ -420,12 +456,28 @@ class UnifiedLayoutOptimizer {
     }
 
     /**
-     * Get text bounding box with conservative estimates
+     * Get text bounding box for circle labels (14px font)
      */
     getTextBounds(text, x, y) {
-        const charWidth = 11; // Conservative character width estimate
-        const textWidth = text.length * charWidth + 30; // Extra padding
-        const textHeight = 14 * 1.6; // Conservative height
+        const charWidth = 10; // 14px font
+        const textWidth = text.length * charWidth + 40;
+        const textHeight = 14 * 1.5;
+
+        return {
+            left: x - textWidth / 2,
+            right: x + textWidth / 2,
+            top: y - textHeight,
+            bottom: y + 10
+        };
+    }
+
+    /**
+     * Get text bounding box for org labels (12px font)
+     */
+    getOrgTextBounds(text, x, y) {
+        const charWidth = 9; // 12px font
+        const textWidth = text.length * charWidth + 30;
+        const textHeight = 12 * 1.5;
 
         return {
             left: x - textWidth / 2,
@@ -494,11 +546,24 @@ class UnifiedLayoutOptimizer {
             }
         }
 
-        // Check org-org overlaps
+        // Check org dot overlaps
         for (let i = 0; i < data.organizations.length; i++) {
             for (let j = i + 1; j < data.organizations.length; j++) {
                 if (this.positionsOverlap(data.organizations[i], data.organizations[j], 60)) {
-                    console.error(`✗ Orgs overlap: ${data.organizations[i].name} ↔ ${data.organizations[j].name}`);
+                    console.error(`✗ Org dots overlap: ${data.organizations[i].name} ↔ ${data.organizations[j].name}`);
+                    hasErrors = true;
+                }
+            }
+        }
+
+        // Check org label overlaps
+        for (let i = 0; i < data.organizations.length; i++) {
+            for (let j = i + 1; j < data.organizations.length; j++) {
+                const labelPos1 = { x: data.organizations[i].x, y: data.organizations[i].y + 20 };
+                const labelPos2 = { x: data.organizations[j].x, y: data.organizations[j].y + 20 };
+
+                if (this.orgLabelsOverlap(labelPos1, data.organizations[i].name, labelPos2, data.organizations[j].name)) {
+                    console.error(`✗ Org labels overlap: ${data.organizations[i].name} ↔ ${data.organizations[j].name}`);
                     hasErrors = true;
                 }
             }
