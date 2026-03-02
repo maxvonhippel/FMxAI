@@ -101,6 +101,12 @@
       "url": "https://formace-lab.gitlab.io/webpage/",
       "careers": "https://formace-lab.gitlab.io/webpage/posts/recruiting/",
       "categories": ["Research Lab"]
+    },
+    {
+      "name": "Reasonable",
+      "url": "https://reasonable.io/",
+      "careers": "https://apply.workable.com/reasonable",
+      "categories": ["Secure Program Synthesis", "Models"]
     }
   ]
 }
