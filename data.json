@@ -107,6 +107,11 @@
       "url": "https://reasonable.io/",
       "careers": "https://apply.workable.com/reasonable",
       "categories": ["Secure Program Synthesis", "Models"]
+    },
+    {
+      "name": "Horizon Omega",
+      "url": "https://www.horizonomega.org/",
+      "categories": ["Research Lab"]
     }
   ]
 }

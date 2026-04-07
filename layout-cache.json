@@ -1,0 +1,235 @@
+{
+  "circles": [
+    {
+      "index": 0,
+      "name": "Mathematics",
+      "color": "#6366f1",
+      "x": 714.9346820209297,
+      "y": 376.1831818699026,
+      "r": 133.33333333333331,
+      "fx": 0.09621433375807563,
+      "fy": -0.06815244039803023,
+      "labelX": 571.156303179665,
+      "labelY": 232.40480302863799
+    },
+    {
+      "index": 1,
+      "name": "Secure Program Synthesis",
+      "color": "#ec4899",
+      "x": 663.1153817094049,
+      "y": 564.1106567195765,
+      "r": 160,
+      "fx": -0.04910097018430695,
+      "fy": 0.042557915454496165,
+      "labelX": 790.8965353039134,
+      "labelY": 755.3486675491619
+    },
+    {
+      "index": 2,
+      "name": "Legal Tech",
+      "color": "#10b981",
+      "x": 268.1449867847112,
+      "y": 733.2460570506354,
+      "r": 93.33333333333333,
+      "fx": -0.1025106122252509,
+      "fy": 0.04390242901042051,
+      "labelX": 403.9516901274602,
+      "labelY": 823.9891951105037
+    },
+    {
+      "index": 3,
+      "name": "Accelerator",
+      "color": "#f59e0b",
+      "x": 87.15141802539078,
+      "y": 398.81041357932725,
+      "r": 106.66666666666666,
+      "fx": 0,
+      "fy": 0,
+      "labelX": 212.0736160350142,
+      "labelY": 523.7326115889506
+    },
+    {
+      "index": 4,
+      "name": "Models",
+      "color": "#8b5cf6",
+      "x": 522.0646434843251,
+      "y": 392.55372790450053,
+      "r": 146.66666666666669,
+      "fx": 0.04602991673133274,
+      "fy": 0.12063876552724916,
+      "labelX": 439.1498998052223,
+      "labelY": 592.7276266152794
+    },
+    {
+      "index": 5,
+      "name": "Research Lab",
+      "color": "#06b6d4",
+      "x": 744.5888879752382,
+      "y": -64.90403712394306,
+      "r": 133.33333333333331,
+      "fx": 0.009367331920149482,
+      "fy": -0.1389466695941356,
+      "labelX": 888.3672668165029,
+      "labelY": 78.87434171732158
+    }
+  ],
+  "organizations": [
+    {
+      "name": "Axiom",
+      "url": "https://axiommath.ai/",
+      "careers": "https://axiommath.ai/join-us",
+      "categories": [
+        "Mathematics",
+        "Secure Program Synthesis",
+        "Models"
+      ],
+      "x": 645.3979768176584,
+      "y": 422.8498485365693
+    },
+    {
+      "name": "Harmonic",
+      "url": "https://harmonic.fun/",
+      "categories": [
+        "Mathematics",
+        "Models"
+      ],
+      "x": 630.3979768176584,
+      "y": 317.8498485365693
+    },
+    {
+      "name": "Logical Intelligence",
+      "url": "https://logicalintelligence.com/",
+      "categories": [
+        "Mathematics",
+        "Models"
+      ],
+      "x": 615.3979768176584,
+      "y": 362.8498485365693
+    },
+    {
+      "name": "Principia Labs",
+      "url": "https://www.principialabs.org/",
+      "categories": [
+        "Mathematics"
+      ],
+      "x": 776.6013486875963,
+      "y": 317.8498485365693
+    },
+    {
+      "name": "Theorem",
+      "url": "https://theorem.dev/",
+      "careers": "https://theorem.dev/careers/",
+      "categories": [
+        "Secure Program Synthesis"
+      ],
+      "x": 668.1153817094049,
+      "y": 659.1106567195765
+    },
+    {
+      "name": "Sigil Logic",
+      "url": "https://sigillogic.com/",
+      "careers": "https://sigillogic.com/careers",
+      "categories": [
+        "Secure Program Synthesis"
+      ],
+      "x": 653.1153817094049,
+      "y": 569.1106567195765
+    },
+    {
+      "name": "Higher Order Co",
+      "url": "https://higherorderco.com/",
+      "categories": [
+        "Secure Program Synthesis"
+      ],
+      "x": 668.1153817094049,
+      "y": 614.1106567195765
+    },
+    {
+      "name": "NDEA",
+      "url": "https://ndea.com/",
+      "careers": "https://ndea.com/join",
+      "categories": [
+        "Secure Program Synthesis",
+        "Models"
+      ],
+      "x": 570.3979768176584,
+      "y": 455.88706123783385
+    },
+    {
+      "name": "Benchify",
+      "url": "https://benchify.com/",
+      "categories": [
+        "Legal Tech"
+      ],
+      "x": 264.8116534513779,
+      "y": 729.912723717302
+    },
+    {
+      "name": "AI Safety Founders",
+      "url": "https://aisfounders.com/",
+      "categories": [
+        "Accelerator"
+      ],
+      "x": 85.48475135872413,
+      "y": 442.1437469126606
+    },
+    {
+      "name": "Seldon Lab",
+      "url": "https://seldonlab.com/",
+      "categories": [
+        "Accelerator"
+      ],
+      "x": 85.48475135872413,
+      "y": 397.1437469126606
+    },
+    {
+      "name": "FMAI Lab",
+      "url": "https://fmailab.doc.ic.ac.uk/",
+      "categories": [
+        "Research Lab"
+      ],
+      "x": 746.2555546419048,
+      "y": -153.23737045727637
+    },
+    {
+      "name": "Formal Computing and AI Lab",
+      "url": "https://sites.google.com/view/fcai-lab",
+      "careers": "https://sites.google.com/view/fcai-lab",
+      "categories": [
+        "Research Lab"
+      ],
+      "x": 746.2555546419048,
+      "y": -18.23737045727637
+    },
+    {
+      "name": "ForMACE Lab",
+      "url": "https://formace-lab.gitlab.io/webpage/",
+      "careers": "https://formace-lab.gitlab.io/webpage/posts/recruiting/",
+      "categories": [
+        "Research Lab"
+      ],
+      "x": 746.2555546419048,
+      "y": -108.23737045727637
+    },
+    {
+      "name": "Reasonable",
+      "url": "https://reasonable.io/",
+      "careers": "https://apply.workable.com/reasonable",
+      "categories": [
+        "Secure Program Synthesis",
+        "Models"
+      ],
+      "x": 555.3979768176584,
+      "y": 500.88706123783385
+    },
+    {
+      "name": "Horizon Omega",
+      "url": "https://www.horizonomega.org/",
+      "categories": [
+        "Research Lab"
+      ],
+      "x": 746.2555546419048,
+      "y": -63.23737045727637
+    }
+  ]
+}
