@@ -3,187 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organizations in FMxAI</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>Secure Program Synthesis Fellowship — Apart Research</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <meta name="description" content="An Apart Research fellowship on secure program synthesis.">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
+        :root {
+            --bg: #101010;
+            --panel: #1c1c1c;
+            --border: #2c2d2c;
+            --text: #f7f7f5;
+            --muted: #a2a3a2;
+            --accent: #46ff99;
+            --accent-soft: #a2ffcc;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { background: var(--bg); color: var(--text); }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
             min-height: 100vh;
-            padding: 1rem;
-            margin: 0;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
-        #header {
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        #header h1 {
-            margin-bottom: 0.5rem;
-        }
-        #header p {
-            margin: 0;
-            color: #cbd5e1;
-        }
-        #main-container {
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-soft); text-decoration: underline; }
+
+        header {
+            padding: 2rem 2rem 0;
+            max-width: 960px;
+            margin: 0 auto;
             display: flex;
-            gap: 1rem;
-            height: calc(100vh - 8rem);
+            align-items: center;
+            gap: 0.75rem;
         }
-        #left-panel {
-            flex: 1;
-            background: #1e293b;
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+        header img { width: 28px; height: 28px; }
+        header .org { color: var(--muted); font-size: 0.95rem; }
+
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem;
         }
-        #right-panel {
-            width: 400px;
-            background: #1e293b;
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            overflow-y: auto;
+
+        #content h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
         }
-        #venn-container {
-            flex: 1;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 2rem;
+        #content h2 {
             font-size: 1.5rem;
             font-weight: 600;
-        }
-        p {
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-        a {
-            color: #fff;
-            text-decoration: underline;
-        }
-        a:hover {
-            color: #e2e8f0;
-        }
-        #venn {
-            display: block;
-            margin: 0 auto;
-            border: 2px solid #475569;
-            border-radius: 8px;
-            background: #1e293b;
-            cursor: grab;
-            width: 100%;
-            height: 100%;
-        }
-        #venn:active {
-            cursor: grabbing;
-        }
-        .jobs-list {
-            width: 100%;
-            margin-top: 1rem;
-        }
-        .jobs-list a {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            color: #e2e8f0;
-            text-decoration: none;
-            border-bottom: 1px solid #334155;
-            transition: background 0.2s;
-        }
-        .jobs-list a:hover {
-            background: #334155;
-        }
-        .jobs-list a::after {
-            content: '→';
-            font-size: 1.25rem;
-            color: #60a5fa;
-        }
-        .section-title {
-            font-size: 1.25rem;
-            font-weight: 600;
+            margin-top: 4rem;
             margin-bottom: 1rem;
-            color: #f1f5f9;
+            letter-spacing: -0.01em;
         }
-        @media (max-width: 1024px) {
-            #main-container {
-                flex-direction: column;
-                height: auto;
-            }
-            #right-panel {
-                width: 100%;
-                max-height: 400px;
-            }
-            #left-panel {
-                min-height: 500px;
-            }
-            #header {
-                text-align: left;
-            }
-        }
-        .circle {
-            fill-opacity: 0.15;
-            stroke-width: 2;
-            stroke-opacity: 0.6;
-        }
-        .label {
-            font-size: 14px;
+        #content h3 {
+            font-size: 1rem;
             font-weight: 600;
-            text-anchor: middle;
-            pointer-events: none;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
         }
-        .org-link {
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .org-link:hover circle {
-            r: 7;
-        }
-        .org-link:hover text {
+        #content p { margin-bottom: 1rem; }
+        #content p:last-child { margin-bottom: 0; }
+
+        .eyebrow {
+            color: var(--accent) !important;
+            font-size: 0.85rem !important;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 1rem !important;
         }
-        .org-circle {
-            fill: #fff;
-            stroke: #fff;
-            stroke-width: 2;
+        .lede {
+            font-size: 1.2rem !important;
+            color: var(--muted);
+            max-width: 42em;
+            margin-bottom: 2.5rem !important;
         }
-        .org-text {
-            font-size: 12px;
-            fill: #e2e8f0;
-            text-anchor: middle;
-            pointer-events: none;
+
+        .cta, .cta-secondary {
+            display: inline-block;
+            font-weight: 600;
+            padding: 0.85rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .cta {
+            background: var(--accent);
+            color: #101010;
+        }
+        .cta:hover {
+            background: var(--accent-soft);
+            text-decoration: none;
+            color: #101010;
+        }
+        .cta-secondary {
+            color: var(--text);
+            padding: 0.85rem 1.25rem;
+            border: 1px solid var(--border);
+        }
+        .cta-secondary:hover {
+            border-color: var(--accent);
+            text-decoration: none;
+        }
+        .cta-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 0;
+        }
+
+        footer {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .error {
+            color: #ff6b6b;
+            font-family: ui-monospace, Menlo, monospace;
+            font-size: 0.9rem;
+            padding: 1rem;
+            border: 1px solid #ff6b6b;
+            border-radius: 0.5rem;
         }
     </style>
 </head>
 <body>
-    <div id="header">
-        <h1>Formal Methods x Artificial Intelligence</h1>
-        <p>
-            This website tracks the FMxAI research community, mapping the landscape of groups, resources and projects. The site is <a href="https://github.com/maxvonhippel/FMxAI">open source</a>. Contact: maxvh [at] hey [dot] com to get involved.
-        </p>
-    </div>
-    <div id="main-container">
-        <div id="left-panel">
-            <div id="venn-container">
-                <svg id="venn"></svg>
-            </div>
-        </div>
-        <div id="right-panel">
-            <div class="section-title">Career Opportunities</div>
-            <div class="jobs-list" id="jobs-list">
-                <!-- Will be populated by JavaScript -->
-            </div>
-        </div>
-    </div>
+    <header>
+        <img src="/favicon.png" alt="Apart Research">
+        <span class="org">Apart Research Fellowship</span>
+    </header>
 
-    <script src="main.js"></script>
+    <main>
+        <div id="content">Loading…</div>
+    </main>
+
+    <footer>
+        Hosted at <a href="https://fmxai.org">fmxai.org</a> &middot; run in partnership with <a href="https://apartresearch.com">Apart Research</a>.
+    </footer>
+
+    <script>
+        // Apply Pandoc-style {.class} suffixes on paragraphs/headings.
+        // e.g. "Intro text {.lede}" -> <p class="lede">Intro text</p>
+        function applyAttrs(html) {
+            return html.replace(
+                /<(p|h[1-6])>([\s\S]*?)\s*\{\.([\w\s-]+)\}\s*<\/\1>/g,
+                (_, tag, inner, classes) =>
+                    `<${tag} class="${classes.trim()}">${inner}</${tag}>`
+            );
+        }
+
+        // Handle heading id syntax: ## Apply {#apply} -> <h2 id="apply">Apply</h2>
+        function applyHeadingIds(html) {
+            return html.replace(
+                /<(h[1-6])>([\s\S]*?)\s*\{#([\w-]+)\}\s*<\/\1>/g,
+                (_, tag, inner, id) => `<${tag} id="${id}">${inner}</${tag}>`
+            );
+        }
+
+        fetch('/content/home.md')
+            .then(r => {
+                if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+                return r.text();
+            })
+            .then(md => {
+                let html = marked.parse(md);
+                html = applyHeadingIds(html);
+                html = applyAttrs(html);
+                document.getElementById('content').innerHTML = html;
+            })
+            .catch(err => {
+                document.getElementById('content').innerHTML =
+                    `<div class="error">Failed to load content: ${err.message}. ` +
+                    `If you opened this file directly, serve it over HTTP ` +
+                    `(e.g. <code>python -m http.server</code>).</div>`;
+            });
+    </script>
 </body>
 </html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizations in FMxAI</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 1rem;
+            margin: 0;
+        }
+        #header {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        #header h1 {
+            margin-bottom: 0.5rem;
+        }
+        #header p {
+            margin: 0;
+            color: #cbd5e1;
+        }
+        #main-container {
+            display: flex;
+            gap: 1rem;
+            height: calc(100vh - 8rem);
+        }
+        #left-panel {
+            flex: 1;
+            background: #1e293b;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #right-panel {
+            width: 400px;
+            background: #1e293b;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            overflow-y: auto;
+        }
+        #venn-container {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        a {
+            color: #fff;
+            text-decoration: underline;
+        }
+        a:hover {
+            color: #e2e8f0;
+        }
+        #venn {
+            display: block;
+            margin: 0 auto;
+            border: 2px solid #475569;
+            border-radius: 8px;
+            background: #1e293b;
+            cursor: grab;
+            width: 100%;
+            height: 100%;
+        }
+        #venn:active {
+            cursor: grabbing;
+        }
+        .jobs-list {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .jobs-list a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            border-bottom: 1px solid #334155;
+            transition: background 0.2s;
+        }
+        .jobs-list a:hover {
+            background: #334155;
+        }
+        .jobs-list a::after {
+            content: '→';
+            font-size: 1.25rem;
+            color: #60a5fa;
+        }
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+        }
+        @media (max-width: 1024px) {
+            #main-container {
+                flex-direction: column;
+                height: auto;
+            }
+            #right-panel {
+                width: 100%;
+                max-height: 400px;
+            }
+            #left-panel {
+                min-height: 500px;
+            }
+            #header {
+                text-align: left;
+            }
+        }
+        .circle {
+            fill-opacity: 0.15;
+            stroke-width: 2;
+            stroke-opacity: 0.6;
+        }
+        .label {
+            font-size: 14px;
+            font-weight: 600;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+        .org-link {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .org-link:hover circle {
+            r: 7;
+        }
+        .org-link:hover text {
+            font-weight: 600;
+        }
+        .org-circle {
+            fill: #fff;
+            stroke: #fff;
+            stroke-width: 2;
+        }
+        .org-text {
+            font-size: 12px;
+            fill: #e2e8f0;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Formal Methods x Artificial Intelligence</h1>
+        <p>
+            This website tracks the FMxAI research community, mapping the landscape of groups, resources and projects. The site is <a href="https://github.com/maxvonhippel/FMxAI">open source</a>. Contact: maxvh [at] hey [dot] com to get involved.
+        </p>
+    </div>
+    <div id="main-container">
+        <div id="left-panel">
+            <div id="venn-container">
+                <svg id="venn"></svg>
+            </div>
+        </div>
+        <div id="right-panel">
+            <div class="section-title">Career Opportunities</div>
+            <div class="jobs-list" id="jobs-list">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
