@@ -3,183 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Program Synthesis Fellowship — Apart Research</title>
+    <title>FMxAI 2026 — Formal Methods × AI Conference</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/favicon.png">
-    <meta name="description" content="An Apart Research fellowship on secure program synthesis.">
+    <meta name="description" content="FMxAI 2026, the Formal Methods × AI conference, June 1–3, 2026 at SRI Innovation Center, Menlo Park, CA.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         :root {
-            --bg: #101010;
-            --panel: #1c1c1c;
-            --border: #2c2d2c;
-            --text: #f7f7f5;
-            --muted: #a2a3a2;
-            --accent: #46ff99;
-            --accent-soft: #a2ffcc;
+            --bg: #ffffff;
+            --panel: #f6f7f9;
+            --border: #e2e6ec;
+            --text: #0e1726;
+            --muted: #5b6573;
+            --accent: #1b3a8a;
+            --accent-soft: #2756c4;
+            --eyebrow: #1b7a4a;
+            --notice: #a3261d;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { background: var(--bg); color: var(--text); }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
-            min-height: 100vh;
-            line-height: 1.6;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.55;
             -webkit-font-smoothing: antialiased;
         }
         a { color: var(--accent); text-decoration: none; }
         a:hover { color: var(--accent-soft); text-decoration: underline; }
 
-        header {
-            padding: 2rem 2rem 0;
-            max-width: 960px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        header img { width: 28px; height: 28px; }
-        header .org { color: var(--muted); font-size: 0.95rem; }
+        .container { max-width: 880px; margin: 0 auto; padding: 0 1.5rem; }
 
-        main {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 3rem 2rem 6rem;
+        header.site {
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
         }
+        header.site .container {
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        }
+        header.site .brand {
+            display: flex; align-items: center; gap: 0.6rem;
+            font-weight: 600; color: var(--text);
+        }
+        header.site .brand img { width: 24px; height: 24px; }
+        header.site nav a {
+            margin-left: 1.25rem; color: var(--muted); font-size: 0.95rem;
+        }
+        header.site nav a:hover { color: var(--accent); }
 
-        #content h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+        .hero {
+            padding: 4rem 0 3rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        #hero-content h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
             font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-        #content h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 4rem;
-            margin-bottom: 1rem;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.1;
             letter-spacing: -0.01em;
-        }
-        #content h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-        #content p { margin-bottom: 1rem; }
-        #content p:last-child { margin-bottom: 0; }
-
-        .eyebrow {
-            color: var(--accent) !important;
-            font-size: 0.85rem !important;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 1rem !important;
-        }
-        .lede {
-            font-size: 1.2rem !important;
-            color: var(--muted);
-            max-width: 42em;
-            margin-bottom: 2.5rem !important;
-        }
-
-        .cta, .cta-secondary {
-            display: inline-block;
-            font-weight: 600;
-            padding: 0.85rem 1.5rem;
-            border-radius: 0.5rem;
-            transition: background 0.15s, border-color 0.15s;
-        }
-        .cta {
-            background: var(--accent);
-            color: #101010;
-        }
-        .cta:hover {
-            background: var(--accent-soft);
-            text-decoration: none;
-            color: #101010;
-        }
-        .cta-secondary {
             color: var(--text);
-            padding: 0.85rem 1.25rem;
-            border: 1px solid var(--border);
-        }
-        .cta-secondary:hover {
-            border-color: var(--accent);
-            text-decoration: none;
-        }
-        .cta-row {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            align-items: center;
             margin-bottom: 1rem;
         }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
+        #hero-content p { margin-bottom: 0.5rem; color: var(--muted); }
+        #hero-content p:last-child { margin-bottom: 0; }
+        #hero-content .eyebrow {
+            color: var(--eyebrow);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
         }
-        .card {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 0.75rem;
-            padding: 1.25rem;
-        }
-        .card p {
-            font-size: 0.95rem;
+        #hero-content .dates {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-style: italic;
+            font-size: 1.35rem;
             color: var(--muted);
-            margin-bottom: 0;
         }
+        #hero-content .venue { font-size: 1rem; }
 
-        footer {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 2rem;
+        section {
+            padding: 3.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-of-type { border-bottom: none; }
+
+        .md h2 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-weight: 700;
+            font-size: 1.85rem;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.5rem;
+        }
+        .md h3 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin: 2.25rem 0 0.75rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--accent);
+        }
+        .md p { margin-bottom: 1rem; }
+        .md p:last-child { margin-bottom: 0; }
+        .md strong { color: var(--text); }
+        .md em { color: var(--muted); }
+        .md .notice { color: var(--notice); font-weight: 600; }
+        .md .agenda-note { font-size: 0.85rem; color: var(--muted); font-style: italic; }
+
+        .md table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            margin: 0.5rem 0 1.25rem;
+        }
+        .md th, .md td {
+            padding: 0.7rem 0.6rem;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid var(--border);
+        }
+        .md th {
+            font-weight: 600;
+            color: var(--muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: var(--panel);
+        }
+        .md td:first-child {
+            width: 9rem;
+            white-space: nowrap;
+            color: var(--muted);
+            font-variant-numeric: tabular-nums;
+        }
+        .md td:last-child {
+            width: 14rem;
             color: var(--muted);
             font-size: 0.9rem;
+        }
+
+        .md .map-callout-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        footer.site {
+            padding: 2rem 0 3rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-align: center;
             border-top: 1px solid var(--border);
         }
 
         .error {
-            color: #ff6b6b;
+            color: var(--notice);
             font-family: ui-monospace, Menlo, monospace;
             font-size: 0.9rem;
             padding: 1rem;
-            border: 1px solid #ff6b6b;
+            border: 1px solid var(--notice);
             border-radius: 0.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .hero { padding: 3rem 0 2rem; }
+            section { padding: 2.5rem 0; }
+            .md td:first-child, .md td:last-child { width: auto; }
+            .md table, .md tbody, .md tr, .md td { display: block; }
+            .md thead { display: none; }
+            .md tr { padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+            .md td { padding: 0.15rem 0; border: none; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="/favicon.png" alt="Apart Research">
-        <span class="org">Apart Research Fellowship</span>
+    <header class="site">
+        <div class="container">
+            <a class="brand" href="/">
+                <img src="/favicon.png" alt="">
+                <span>FMxAI 2026</span>
+            </a>
+            <nav>
+                <a href="#logistics">Logistics</a>
+                <a href="#agenda">Agenda</a>
+                <a href="/map/">Map</a>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <div id="content">Loading…</div>
-    </main>
+    <div class="hero">
+        <div class="container md" id="hero-content">Loading…</div>
+    </div>
 
-    <footer>
-        Hosted at <a href="https://fmxai.org">fmxai.org</a> &middot; run in partnership with <a href="https://apartresearch.com">Apart Research</a>.
+    <section id="logistics">
+        <div class="container md" id="logistics-content">Loading…</div>
+    </section>
+
+    <section id="agenda">
+        <div class="container md" id="agenda-content">Loading…</div>
+    </section>
+
+    <section id="community">
+        <div class="container md" id="community-content">Loading…</div>
+    </section>
+
+    <footer class="site">
+        <div class="container">
+            <a href="https://fmxai.org">fmxai.org</a> · <a href="https://github.com/maxvonhippel/FMxAI">source</a>
+        </div>
     </footer>
 
     <script>
-        // Apply Pandoc-style {.class} suffixes on paragraphs/headings.
-        // e.g. "Intro text {.lede}" -> <p class="lede">Intro text</p>
+        // Pandoc-style {.class} suffix on block elements
         function applyAttrs(html) {
             return html.replace(
-                /<(p|h[1-6])>([\s\S]*?)\s*\{\.([\w\s-]+)\}\s*<\/\1>/g,
+                /<(p|h[1-6]|li|td|a)>([\s\S]*?)\s*\{\.([\w\s-]+)\}\s*<\/\1>/g,
                 (_, tag, inner, classes) =>
                     `<${tag} class="${classes.trim()}">${inner}</${tag}>`
             );
         }
-
-        // Handle heading id syntax: ## Apply {#apply} -> <h2 id="apply">Apply</h2>
+        // Heading ids: ## Apply {#apply}
         function applyHeadingIds(html) {
             return html.replace(
                 /<(h[1-6])>([\s\S]*?)\s*\{#([\w-]+)\}\s*<\/\1>/g,
@@ -187,23 +235,29 @@
             );
         }
 
-        fetch('/content/home.md')
-            .then(r => {
-                if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
-                return r.text();
-            })
-            .then(md => {
-                let html = marked.parse(md);
-                html = applyHeadingIds(html);
-                html = applyAttrs(html);
-                document.getElementById('content').innerHTML = html;
-            })
-            .catch(err => {
-                document.getElementById('content').innerHTML =
-                    `<div class="error">Failed to load content: ${err.message}. ` +
-                    `If you opened this file directly, serve it over HTTP ` +
-                    `(e.g. <code>python -m http.server</code>).</div>`;
-            });
+        marked.setOptions({ gfm: true, breaks: false });
+
+        function loadInto(elId, path) {
+            return fetch(path)
+                .then(r => { if (!r.ok) throw new Error(`${r.status} ${r.statusText}`); return r.text(); })
+                .then(md => {
+                    let html = marked.parse(md);
+                    html = applyHeadingIds(html);
+                    html = applyAttrs(html);
+                    document.getElementById(elId).innerHTML = html;
+                })
+                .catch(err => {
+                    document.getElementById(elId).innerHTML =
+                        `<div class="error">Failed to load ${path}: ${err.message}. ` +
+                        `If you opened this file directly, serve it over HTTP ` +
+                        `(e.g. <code>python -m http.server</code>).</div>`;
+                });
+        }
+
+        loadInto('hero-content', '/content/hero.md');
+        loadInto('logistics-content', '/content/logistics.md');
+        loadInto('agenda-content', '/content/agenda.md');
+        loadInto('community-content', '/content/community.md');
     </script>
 </body>
 </html>
