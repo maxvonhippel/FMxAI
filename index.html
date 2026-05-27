@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         :root {
             --bg: #ffffff;
@@ -21,25 +20,27 @@
             --accent: #1b3a8a;
             --accent-soft: #2756c4;
             --eyebrow: #1b7a4a;
-            --notice: #a3261d;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html, body { height: 100%; }
         body {
             background: var(--bg);
             color: var(--text);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.55;
             -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
         }
         a { color: var(--accent); text-decoration: none; }
         a:hover { color: var(--accent-soft); text-decoration: underline; }
 
-        .container { max-width: 880px; margin: 0 auto; padding: 0 1.5rem; }
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; width: 100%; }
 
         header.site {
             border-bottom: 1px solid var(--border);
             padding: 1rem 0;
+            flex-shrink: 0;
         }
         header.site .container {
             display: flex; align-items: center; justify-content: space-between; gap: 1rem;
@@ -49,139 +50,65 @@
             font-weight: 600; color: var(--text);
         }
         header.site .brand img { width: 24px; height: 24px; }
+        header.site .brand .sub {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-left: 0.4rem;
+        }
         header.site nav a {
             margin-left: 1.25rem; color: var(--muted); font-size: 0.95rem;
         }
         header.site nav a:hover { color: var(--accent); }
 
-        .hero {
-            padding: 4rem 0 3rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
+        .doc-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            padding: 1rem 0 0;
         }
-        #hero-content h1 {
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-weight: 700;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            line-height: 1.1;
-            letter-spacing: -0.01em;
-            color: var(--text);
-            margin-bottom: 1rem;
+        .doc-wrap .container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
         }
-        #hero-content p { margin-bottom: 0.5rem; color: var(--muted); }
-        #hero-content p:last-child { margin-bottom: 0; }
-        #hero-content .eyebrow {
-            color: var(--eyebrow);
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-        #hero-content .dates {
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-style: italic;
-            font-size: 1.35rem;
-            color: var(--muted);
-        }
-        #hero-content .venue { font-size: 1rem; }
-
-        section {
-            padding: 3.5rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-        section:last-of-type { border-bottom: none; }
-
-        .md h2 {
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-weight: 700;
-            font-size: 1.85rem;
-            letter-spacing: -0.01em;
-            margin-bottom: 1.5rem;
-        }
-        .md h3 {
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: var(--accent);
-            margin: 2.25rem 0 0.75rem;
-            padding-bottom: 0.4rem;
-            border-bottom: 2px solid var(--accent);
-        }
-        .md p { margin-bottom: 1rem; }
-        .md p:last-child { margin-bottom: 0; }
-        .md strong { color: var(--text); }
-        .md em { color: var(--muted); }
-        .md .notice { color: var(--notice); font-weight: 600; }
-        .md .agenda-note { font-size: 0.85rem; color: var(--muted); font-style: italic; }
-
-        .md table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.95rem;
-            margin: 0.5rem 0 1.25rem;
-            border: 1px solid var(--border);
-        }
-        .md th, .md td {
-            padding: 0.7rem 0.8rem;
-            text-align: left;
-            vertical-align: top;
-            border-bottom: 1px solid var(--border);
-            border-right: 1px solid var(--border);
-        }
-        .md th:last-child, .md td:last-child { border-right: none; }
-        .md tr:last-child td { border-bottom: none; }
-        .md th {
-            font-weight: 600;
-            color: var(--muted);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            background: var(--panel);
-        }
-        .md td:first-child {
-            width: 9rem;
-            white-space: nowrap;
-            color: var(--muted);
-            font-variant-numeric: tabular-nums;
-        }
-        .md td:last-child {
-            width: 14rem;
+        .doc-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding: 0 0 0.75rem;
             color: var(--muted);
             font-size: 0.9rem;
         }
-
-        .md .map-callout-link {
-            display: inline-block;
-            margin-top: 0.5rem;
+        .doc-meta .eyebrow {
+            color: var(--eyebrow);
             font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+        .doc-frame {
+            flex: 1;
+            min-height: 70vh;
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            background: var(--panel);
         }
 
         footer.site {
-            padding: 2rem 0 3rem;
+            padding: 1.25rem 0;
             color: var(--muted);
             font-size: 0.9rem;
             text-align: center;
             border-top: 1px solid var(--border);
-        }
-
-        .error {
-            color: var(--notice);
-            font-family: ui-monospace, Menlo, monospace;
-            font-size: 0.9rem;
-            padding: 1rem;
-            border: 1px solid var(--notice);
-            border-radius: 0.5rem;
-        }
-
-        @media (max-width: 640px) {
-            .hero { padding: 3rem 0 2rem; }
-            section { padding: 2.5rem 0; }
-            .md td:first-child, .md td:last-child { width: auto; }
-            .md table, .md tbody, .md tr, .md td { display: block; }
-            .md thead { display: none; }
-            .md tr { padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
-            .md td { padding: 0.15rem 0; border: none; }
+            flex-shrink: 0;
         }
     </style>
 </head>
@@ -191,77 +118,34 @@
             <a class="brand" href="/">
                 <img src="/favicon.png" alt="">
                 <span>FMxAI 2026</span>
+                <span class="sub">June 1–3 · SRI Innovation Center, Menlo Park</span>
             </a>
             <nav>
-                <a href="#logistics">Logistics</a>
-                <a href="#agenda">Agenda</a>
+                <a href="https://docs.google.com/document/d/1SbRW-7qws0z7VHSQlhcVJoog3gix0FMmuDsa0z7jYk8/view" target="_blank" rel="noopener">Open in Docs ↗</a>
                 <a href="/map/">Map</a>
             </nav>
         </div>
     </header>
 
-    <div class="hero">
-        <div class="container md" id="hero-content">Loading…</div>
-    </div>
-
-    <section id="logistics">
-        <div class="container md" id="logistics-content">Loading…</div>
-    </section>
-
-    <section id="agenda">
-        <div class="container md" id="agenda-content">Loading…</div>
-    </section>
-
-    <section id="community">
-        <div class="container md" id="community-content">Loading…</div>
-    </section>
+    <main class="doc-wrap">
+        <div class="container">
+            <div class="doc-meta">
+                <span class="eyebrow">Conference info &amp; agenda — live from Google Docs</span>
+                <span>Last edits reflect within a few minutes.</span>
+            </div>
+            <iframe
+                class="doc-frame"
+                src="https://docs.google.com/document/d/1SbRW-7qws0z7VHSQlhcVJoog3gix0FMmuDsa0z7jYk8/preview"
+                title="FMxAI 2026 conference info and agenda"
+                loading="lazy">
+            </iframe>
+        </div>
+    </main>
 
     <footer class="site">
         <div class="container">
             <a href="https://fmxai.org">fmxai.org</a> · <a href="https://github.com/maxvonhippel/FMxAI">source</a>
         </div>
     </footer>
-
-    <script>
-        // Pandoc-style {.class} suffix on block elements
-        function applyAttrs(html) {
-            return html.replace(
-                /<(p|h[1-6]|li|td|a)>([\s\S]*?)\s*\{\.([\w\s-]+)\}\s*<\/\1>/g,
-                (_, tag, inner, classes) =>
-                    `<${tag} class="${classes.trim()}">${inner}</${tag}>`
-            );
-        }
-        // Heading ids: ## Apply {#apply}
-        function applyHeadingIds(html) {
-            return html.replace(
-                /<(h[1-6])>([\s\S]*?)\s*\{#([\w-]+)\}\s*<\/\1>/g,
-                (_, tag, inner, id) => `<${tag} id="${id}">${inner}</${tag}>`
-            );
-        }
-
-        marked.setOptions({ gfm: true, breaks: false });
-
-        function loadInto(elId, path) {
-            return fetch(path)
-                .then(r => { if (!r.ok) throw new Error(`${r.status} ${r.statusText}`); return r.text(); })
-                .then(md => {
-                    let html = marked.parse(md);
-                    html = applyHeadingIds(html);
-                    html = applyAttrs(html);
-                    document.getElementById(elId).innerHTML = html;
-                })
-                .catch(err => {
-                    document.getElementById(elId).innerHTML =
-                        `<div class="error">Failed to load ${path}: ${err.message}. ` +
-                        `If you opened this file directly, serve it over HTTP ` +
-                        `(e.g. <code>python -m http.server</code>).</div>`;
-                });
-        }
-
-        loadInto('hero-content', '/content/hero.md');
-        loadInto('logistics-content', '/content/logistics.md');
-        loadInto('agenda-content', '/content/agenda.md');
-        loadInto('community-content', '/content/community.md');
-    </script>
 </body>
 </html>
