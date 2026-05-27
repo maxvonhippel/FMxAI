@@ -120,13 +120,17 @@
             border-collapse: collapse;
             font-size: 0.95rem;
             margin: 0.5rem 0 1.25rem;
+            border: 1px solid var(--border);
         }
         .md th, .md td {
-            padding: 0.7rem 0.6rem;
+            padding: 0.7rem 0.8rem;
             text-align: left;
             vertical-align: top;
             border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
         }
+        .md th:last-child, .md td:last-child { border-right: none; }
+        .md tr:last-child td { border-bottom: none; }
         .md th {
             font-weight: 600;
             color: var(--muted);
