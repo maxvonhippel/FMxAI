@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FMxAI 2026 — Formal Methods × AI Conference</title>
+    <title>Formal Methods × AI 2026</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/favicon.png">
-    <meta name="description" content="FMxAI 2026, the Formal Methods × AI conference, June 1–3, 2026 at SRI Innovation Center, Menlo Park, CA.">
+    <meta name="description" content="Formal Methods × AI 2026 — 80 people, two and a half days, no spectators. June 1–3, 2026 at SRI International, Menlo Park, CA.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #ffffff;
@@ -22,25 +22,29 @@
             --eyebrow: #1b7a4a;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { height: 100%; }
+        html { scroll-behavior: smooth; }
         body {
             background: var(--bg);
             color: var(--text);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.55;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            display: flex;
-            flex-direction: column;
         }
         a { color: var(--accent); text-decoration: none; }
         a:hover { color: var(--accent-soft); text-decoration: underline; }
+        .serif { font-family: 'Source Serif 4', Georgia, serif; }
 
-        .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; width: 100%; }
+        .container { max-width: 940px; margin: 0 auto; padding: 0 1.5rem; }
+        .narrow { max-width: 720px; }
 
         header.site {
             border-bottom: 1px solid var(--border);
             padding: 1rem 0;
-            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: saturate(180%) blur(8px);
+            z-index: 10;
         }
         header.site .container {
             display: flex; align-items: center; justify-content: space-between; gap: 1rem;
@@ -50,66 +54,185 @@
             font-weight: 600; color: var(--text);
         }
         header.site .brand img { width: 24px; height: 24px; }
-        header.site .brand .sub {
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-style: italic;
-            font-weight: 400;
-            color: var(--muted);
-            font-size: 0.95rem;
-            margin-left: 0.4rem;
-        }
         header.site nav a {
-            margin-left: 1.25rem; color: var(--muted); font-size: 0.95rem;
+            margin-left: 1.1rem; color: var(--muted); font-size: 0.92rem;
         }
         header.site nav a:hover { color: var(--accent); }
+        @media (max-width: 720px) {
+            header.site nav a:not(.nav-keep) { display: none; }
+        }
 
-        .doc-wrap {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: 0;
-            padding: 1rem 0 0;
-        }
-        .doc-wrap .container {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            min-height: 0;
-        }
-        .doc-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 1rem;
-            flex-wrap: wrap;
-            padding: 0 0 0.75rem;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-        .doc-meta .eyebrow {
+        section { padding: 3.5rem 0; border-bottom: 1px solid var(--border); }
+        .eyebrow {
             color: var(--eyebrow);
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
             font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-weight: 700;
+            font-size: clamp(2.4rem, 6vw, 3.8rem);
+            line-height: 1.08;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.25rem;
+        }
+        h2 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-weight: 700;
+            font-size: 1.9rem;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.25rem;
+        }
+        h3 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
+        }
+        p { margin-bottom: 1rem; }
+        p:last-child { margin-bottom: 0; }
+        .lede {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.4rem;
+            line-height: 1.4;
+            color: var(--text);
+            max-width: 30em;
+            margin-bottom: 2rem;
+        }
+
+        .hero { padding: 4.5rem 0 3.5rem; }
+        .facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 2rem;
+            margin-bottom: 1.75rem;
+            font-size: 1.05rem;
+        }
+        .facts div span { color: var(--muted); }
+        .facts div strong { font-weight: 600; }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            padding: 0.8rem 1.4rem;
+            border-radius: 0.5rem;
+            transition: background 0.15s;
+        }
+        .btn:hover { background: var(--accent-soft); color: #fff; text-decoration: none; }
+        .btn-ghost {
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 600;
+            padding: 0.8rem 1.4rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+        }
+        .btn-ghost:hover { border-color: var(--accent); text-decoration: none; }
+        .btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+
+        .quotes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin-top: 1.75rem;
+        }
+        blockquote {
+            background: var(--panel);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 0.5rem 0.5rem 0;
+            padding: 1rem 1.25rem;
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-style: italic;
+            color: var(--text);
+            font-size: 1.02rem;
+        }
+        .stat {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.75rem;
+        }
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.4rem;
+        }
+        .card p { color: var(--muted); font-size: 0.96rem; margin: 0; }
+
+        .schedule { display: grid; gap: 0.75rem; margin-top: 1.5rem; }
+        .schedule .day {
+            display: flex;
+            gap: 1.25rem;
+            align-items: baseline;
+            padding: 1rem 1.25rem;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+        }
+        .schedule .day .when {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-weight: 700;
+            min-width: 8rem;
+            color: var(--accent);
+        }
+
+        .speakers {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.75rem;
+        }
+        .speaker {
+            padding: 1rem 1.1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+        }
+        .speaker .name { font-weight: 600; }
+        .speaker .role { color: var(--muted); font-size: 0.9rem; margin-top: 0.15rem; }
+
+        .logistics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem 2rem;
+            margin-top: 1.5rem;
+        }
+        .logistics-grid h3 { color: var(--accent); }
+        .logistics-grid ul { list-style: none; }
+        .logistics-grid li { color: var(--muted); margin-bottom: 0.35rem; }
+
+        .doc-meta {
+            display: flex; justify-content: space-between; align-items: baseline;
+            gap: 1rem; flex-wrap: wrap; margin-bottom: 0.75rem;
+            color: var(--muted); font-size: 0.9rem;
         }
         .doc-frame {
-            flex: 1;
-            min-height: 70vh;
             width: 100%;
+            min-height: 80vh;
             border: 1px solid var(--border);
             border-radius: 0.5rem;
             background: var(--panel);
         }
 
         footer.site {
-            padding: 1.25rem 0;
+            padding: 2.5rem 0 3rem;
             color: var(--muted);
             font-size: 0.9rem;
             text-align: center;
-            border-top: 1px solid var(--border);
-            flex-shrink: 0;
         }
+        footer.site p { margin-bottom: 0.4rem; }
     </style>
 </head>
 <body>
@@ -118,33 +241,172 @@
             <a class="brand" href="/">
                 <img src="/favicon.png" alt="">
                 <span>FMxAI 2026</span>
-                <span class="sub">June 1–3 · SRI Innovation Center, Menlo Park</span>
             </a>
             <nav>
-                <a href="https://docs.google.com/document/d/1SbRW-7qws0z7VHSQlhcVJoog3gix0FMmuDsa0z7jYk8/view" target="_blank" rel="noopener">Open in Docs ↗</a>
-                <a href="/map/">Map</a>
+                <a href="#about">About</a>
+                <a href="#schedule">Schedule</a>
+                <a href="#speakers">Speakers</a>
+                <a href="#venue">Venue</a>
+                <a class="nav-keep" href="/map/">Map</a>
             </nav>
         </div>
     </header>
 
-    <main class="doc-wrap">
+    <div class="hero">
         <div class="container">
+            <div class="eyebrow">June 1–3, 2026 · SRI International, Menlo Park</div>
+            <h1>Formal Methods × AI 2026</h1>
+            <p class="lede">80 people, two and a half days, no spectators. FM and AI researchers scope what to build next — together.</p>
+            <div class="facts">
+                <div><strong>Date</strong> <span>· June 1–3, 2026</span></div>
+                <div><strong>Location</strong> <span>· SRI International, Menlo Park, CA</span></div>
+                <div><strong>Access</strong> <span>· Invitation only — RSVP link is in your inbox</span></div>
+            </div>
+            <div class="btn-row">
+                <a class="btn" href="https://atlascomputing.org/fmxai26/" target="_blank" rel="noopener">Nominate yourself</a>
+                <a class="btn-ghost" href="#agenda">View the agenda</a>
+            </div>
+        </div>
+    </div>
+
+    <section id="results">
+        <div class="container narrow">
+            <h2>Last year</h2>
+            <p>The first edition gathered 50+ invited attendees at SRI International from September 30 to October 2, 2025 — senior FM researchers, frontier AI lab engineers, government research staff, startup founders, and funders.</p>
+            <p class="stat">~95% of post-event survey respondents said they'd try their best to attend again.</p>
+            <div class="quotes">
+                <blockquote>The quality of people in the room was amazing. Please keep bar high.</blockquote>
+                <blockquote>I got some great new perspectives on how AI might support FM and the (potential) future capabilities of models.</blockquote>
+                <blockquote>The working groups on near-term impact, the ask/offer session… were very valuable.</blockquote>
+                <blockquote>I definitely am going to do more with FM, specifically starting with learning LEAN.</blockquote>
+                <blockquote>Hearing opinions from people that I would normally not have the chance to talk to.</blockquote>
+                <blockquote>Yes, realized I'm not actually crazy.</blockquote>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>What you'll get out of it</h2>
+            <p class="narrow">This is not a traditional academic conference. The format is built for shared problem-scoping, not paper presentations.</p>
+            <div class="cards">
+                <div class="card">
+                    <h3>Curated for complementary expertise</h3>
+                    <p>About 80 people, hand-picked across formal methods, frontier AI labs, government research, and funders. The mix is the point.</p>
+                </div>
+                <div class="card">
+                    <h3>Working sessions, not broadcast</h3>
+                    <p>Structured discussion is the default mode. Lightning talks and longer presentations exist to seed conversations, not fill the schedule.</p>
+                </div>
+                <div class="card">
+                    <h3>Scope real projects</h3>
+                    <p>Working groups identify neglected high-value problems. Ask/offer sessions turn introductions into concrete collaborations.</p>
+                </div>
+                <div class="card">
+                    <h3>Outcomes that ship</h3>
+                    <p>The 2025 edition produced new research collaborations, funded projects, and at least one Focused Research Organization that traces directly back to connections made in the room.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule">
+        <div class="container">
+            <h2>Schedule</h2>
+            <p>High-level shape of the 2.5 days. Detailed agenda below.</p>
+            <div class="schedule">
+                <div class="day"><span class="when">Mon, June 1</span><span>Welcome Reception at 6:00 PM</span></div>
+                <div class="day"><span class="when">Tue, June 2</span><span>Day 1, 9:15 AM – 5:30 PM</span></div>
+                <div class="day"><span class="when">Wed, June 3</span><span>Day 2, 9:15 AM – 5:30 PM</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="speakers">
+        <div class="container">
+            <h2>Confirmed speakers</h2>
+            <div class="speakers">
+                <div class="speaker"><div class="name">Abbey Chaver</div><div class="role">Coefficient Giving, Associate Program Officer</div></div>
+                <div class="speaker"><div class="name">Buck Shlegeris</div><div class="role">Redwood Research, CEO</div></div>
+                <div class="speaker"><div class="name">Evan Miyazono</div><div class="role">Atlas Computing, Founder &amp; CEO</div></div>
+                <div class="speaker"><div class="name">Jason Fox</div><div class="role">KRY10, Co-Founder &amp; COO</div></div>
+                <div class="speaker"><div class="name">Jesse Han</div><div class="role">Math Inc., CEO &amp; Cofounder</div></div>
+                <div class="speaker"><div class="name">Keri Warr</div><div class="role">Anthropic, Member of Technical Staff</div></div>
+                <div class="speaker"><div class="name">Leo de Moura</div><div class="role">AWS, Chief Architect, Lean FRO</div></div>
+                <div class="speaker"><div class="name">Lisa Thiergart</div><div class="role">Institute for Security and Technology, Senior Director, SL5 Task Force</div></div>
+                <div class="speaker"><div class="name">Max von Hippel</div><div class="role">Benchify, Co-Founder &amp; CTO</div></div>
+                <div class="speaker"><div class="name">Mike Dodds</div><div class="role">Galois, Principal Scientist</div></div>
+                <div class="speaker"><div class="name">Nora Ammann</div><div class="role">ARIA, Programme Director, Safeguarded AI</div></div>
+                <div class="speaker"><div class="name">Quinn Dougherty</div><div class="role">Forall R&amp;D, Research Engineer</div></div>
+                <div class="speaker"><div class="name">Tom Kalil</div><div class="role">Renaissance Philanthropy, CEO</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="venue">
+        <div class="container">
+            <h2>Venue &amp; logistics</h2>
+            <div class="logistics-grid">
+                <div>
+                    <h3>Venue</h3>
+                    <p>SRI International, Innovation Center<br>301 Ravenswood Avenue<br>Menlo Park, CA 94025<br>
+                    <a href="https://maps.app.goo.gl/odaHBPaUzCEbRYNE7" target="_blank" rel="noopener">View on map ↗</a></p>
+                </div>
+                <div>
+                    <h3>Closest airports</h3>
+                    <ul>
+                        <li>SFO (San Francisco) — 30 min drive</li>
+                        <li>SJC (San Jose) — 30 min drive</li>
+                        <li>OAK (Oakland) — 45 min drive</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Public transit</h3>
+                    <ul>
+                        <li>~10 min walk from Menlo Park Caltrain station</li>
+                        <li>From SFO: BART to Millbrae → Caltrain south to Menlo Park</li>
+                        <li>From SJC: VTA Route 60 to Santa Clara Caltrain → Caltrain north to Menlo Park</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Hotel</h3>
+                    <p>A room block has been reserved at a nearby hotel. Attendees cover their own rooms; booking details are sent after RSVP.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="register">
+        <div class="container narrow">
+            <h2>Ready to join us?</h2>
+            <p>This is an invitation-only event. If you've been invited, check your inbox for the RSVP link.</p>
+            <p>Think you should be there? <a href="https://atlascomputing.org/fmxai26/" target="_blank" rel="noopener">Nominate yourself</a>.</p>
+            <h3 style="margin-top:2rem">Organization &amp; support</h3>
+            <p>Organized by Atlas Computing, with funding support from Coefficient Giving, Halcyon Futures, Harmonic, and ARIA.</p>
+            <p>Interested in quarterly updates, or want more frequent news? Visit the <a href="https://atlascomputing.org/fmxai26/" target="_blank" rel="noopener">Atlas Computing event page</a> or follow the <a href="https://blog.atlascomputing.org" target="_blank" rel="noopener">blog</a>.</p>
+        </div>
+    </section>
+
+    <section id="agenda">
+        <div class="container">
+            <h2>Detailed agenda</h2>
             <div class="doc-meta">
-                <span class="eyebrow">Conference info &amp; agenda — live from Google Docs</span>
-                <span>Last edits reflect within a few minutes.</span>
+                <span class="eyebrow">Live from Google Docs</span>
+                <span>Updates reflect within a few minutes of edits.</span>
             </div>
             <iframe
                 class="doc-frame"
                 src="https://docs.google.com/document/d/1SbRW-7qws0z7VHSQlhcVJoog3gix0FMmuDsa0z7jYk8/preview"
-                title="FMxAI 2026 conference info and agenda"
+                title="FMxAI 2026 detailed agenda"
                 loading="lazy">
             </iframe>
         </div>
-    </main>
+    </section>
 
     <footer class="site">
         <div class="container">
-            <a href="https://fmxai.org">fmxai.org</a> · <a href="https://github.com/maxvonhippel/FMxAI">source</a>
+            <p>The <a href="/map/">FMxAI map</a> tracks groups and projects at the intersection of formal methods and AI.</p>
+            <p><a href="https://fmxai.org">fmxai.org</a> · <a href="https://github.com/maxvonhippel/FMxAI">source</a></p>
         </div>
     </footer>
 </body>
