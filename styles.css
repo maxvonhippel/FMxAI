@@ -189,17 +189,40 @@ blockquote {
 
 .speakers {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem 1.25rem;
     margin-top: 1.75rem;
 }
 .speaker {
-    padding: 1rem 1.1rem;
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
-.speaker .name { font-weight: 600; }
-.speaker .role { color: var(--muted); font-size: 0.9rem; margin-top: 0.15rem; }
+.speaker .headshot {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    background: var(--panel);
+    margin-bottom: 0.7rem;
+    border: 1px solid var(--border);
+}
+.speaker .name { font-weight: 600; font-size: 1rem; }
+.speaker .role { color: var(--muted); font-size: 0.88rem; margin-top: 0.15rem; line-height: 1.4; }
+
+.hero-photo, .venue-photo {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    display: block;
+    margin: 1.75rem 0 0.5rem;
+}
+.photo-caption {
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
 
 .logistics-grid {
     display: grid;
