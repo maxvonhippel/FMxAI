@@ -9,7 +9,7 @@ linter.missingDocs = true
 [[require]]
 name = "sites"
 git = "https://github.com/for-all-dev/sites.git"
-rev = "svg"
+rev = "master"
 
 [[lean_lib]]
 name = "Fmxai"

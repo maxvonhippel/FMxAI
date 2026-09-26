@@ -91,5 +91,4 @@ GitHub Pages, from the `dist/` artifact built by `.github/workflows/pages.yml` o
 `main`. `public/CNAME` keeps `fmxai.org` pointed at it. The repository's Pages source must be
 set to *GitHub Actions* rather than a branch.
 
-The `sites` dependency is pinned in `lake-manifest.json` to a revision on its `svg` branch,
-which adds inline SVG and `iframe` to the typed HTML.
+The `sites` dependency is pinned in `lake-manifest.json` to a commit on its `master` branch.
