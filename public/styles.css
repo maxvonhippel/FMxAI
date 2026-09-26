@@ -236,3 +236,96 @@ blockquote {
 .logistics-grid h3 { color: var(--accent); }
 .logistics-grid ul { list-style: none; }
 .logistics-grid li { color: var(--muted); margin-bottom: 0.35rem; }
+
+/* ------------------------------------------------------------------ */
+/* Page-specific rules. These used to be inline <style> blocks in each */
+/* page; the generator emits one shared stylesheet, so they live here. */
+/* ------------------------------------------------------------------ */
+
+.hero { padding: 4.5rem 0 3.5rem; }
+
+/* / */
+.events { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1.75rem; }
+.event {
+    display: block;
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: border-color 0.15s, transform 0.15s;
+}
+.event:hover { border-color: var(--accent); text-decoration: none; transform: translateY(-2px); }
+.event .tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+}
+.event .tag.upcoming { background: #e6f0ff; color: var(--accent); }
+.event .tag.past { background: #eef0f3; color: var(--muted); }
+.event h3 { font-size: 1.4rem; margin-bottom: 0.35rem; color: var(--text); }
+.event .when { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.6rem; }
+.event p { color: var(--muted); font-size: 0.95rem; margin: 0; }
+.event .go { color: var(--accent); font-weight: 600; font-size: 0.95rem; margin-top: 0.9rem; display: inline-block; }
+/* The whole card is the link: the call to action is stretched over it. */
+.event .go::after { content: ""; position: absolute; inset: 0; }
+.event .go:hover { text-decoration: none; }
+.callout {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1.25rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem; flex-wrap: wrap; margin-top: 1.25rem;
+}
+.callout p { margin: 0; color: var(--muted); }
+.callout a { font-weight: 600; white-space: nowrap; }
+
+/* /2026/ */
+.doc-meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1rem; flex-wrap: wrap; margin-bottom: 0.75rem;
+    color: var(--muted); font-size: 0.9rem;
+}
+.doc-frame {
+    width: 100%;
+    min-height: 80vh;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--panel);
+}
+.mt-2 { margin-top: 2rem; }
+
+/* /2025/ */
+.hero-2025 { padding: 3rem 0 0; }
+.hero-2025 .hero-photo {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    display: block;
+    margin-top: 2rem;
+}
+.hero-photo-caption {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.6rem;
+    text-align: center;
+}
+.goals { margin-top: 1.5rem; padding-left: 1.2rem; }
+.goals li { margin-bottom: 0.6rem; }
+.archived-banner {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+}
+.mt-125 { margin-top: 1.25rem; }

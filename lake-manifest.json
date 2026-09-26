@@ -1,0 +1,16 @@
+{"version": "1.3.0",
+ "packagesDir": ".lake/packages",
+ "packages":
+ [{"url": "https://github.com/for-all-dev/sites.git",
+   "type": "git",
+   "subDir": null,
+   "scope": "",
+   "rev": "2180416beccf2b30ae4a2ff039fcaf1a77cb3ff8",
+   "name": "sites",
+   "manifestFile": "lake-manifest.json",
+   "inputRev": "master",
+   "inherited": false,
+   "configFile": "lakefile.toml"}],
+ "name": "fmxai",
+ "lakeDir": ".lake",
+ "fixedToolchain": false}
