@@ -1,0 +1,22 @@
+name = "fmxai"
+version = "1.0.0"
+defaultTargets = ["fmxai"]
+
+[leanOptions]
+autoImplicit = false
+linter.missingDocs = true
+
+[[require]]
+name = "sites"
+git = "https://github.com/for-all-dev/sites.git"
+rev = "svg"
+
+[[lean_lib]]
+name = "Fmxai"
+
+[[lean_exe]]
+name = "fmxai"
+root = "Main"
+
+[[lean_lib]]
+name = "Test"
