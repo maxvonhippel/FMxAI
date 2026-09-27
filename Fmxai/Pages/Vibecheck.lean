@@ -36,9 +36,9 @@ def vibecheck : Page Route :=
                 div [.cls "promo"]
                   [ iframe [.cls "promo-frame", .src (vibecheckPromoUrl ++ "#embed"),
                       .title "Vibecheck promo animation"] [],
-                    p [.cls "promo-caption"] ["A 25-second loop. Click it to pause. ",
-                      a [.href (.url vibecheckPromoUrl)] ["Open the promo on its own page"],
-                      " to jump between scenes, grab the post copy, or leave feedback."] ] ] ],
+                    p [.cls "promo-caption"] ["A 25-second loop. Click it to pause, or ",
+                      a [.href (.url vibecheckPromoUrl)] ["open it on its own page"],
+                      " to jump between scenes."] ] ] ],
         «section» [.id "about"]
           [ div [.cls "container narrow"]
               [ h2 [] ["Is FM ready for prime time?"],

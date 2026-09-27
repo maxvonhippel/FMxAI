@@ -33,29 +33,18 @@
   .stage { position: relative; width: 100%; max-width: 100%; aspect-ratio: 16 / 9; border: 3px solid var(--paper); box-shadow: 8px 8px 0 var(--pink); background: var(--ink); }
   .stage canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; cursor: pointer; }
   .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-  button, .cta { font-family: var(--pixel); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; border: 2px solid var(--paper); background: transparent; color: var(--paper); padding: 8px 12px; cursor: pointer; text-decoration: none; }
+  button { font-family: var(--pixel); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; border: 2px solid var(--paper); background: transparent; color: var(--paper); padding: 8px 12px; cursor: pointer; text-decoration: none; }
   button:hover { background: var(--ink-2); }
   button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
-  button:focus-visible, .cta:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+  button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chips button { border-color: var(--muted); color: var(--muted); font-size: 12px; padding: 6px 10px; }
   .chips button[aria-pressed="true"] { background: var(--cyan); border-color: var(--cyan); color: var(--ink); }
-  .spacer { flex: 1; }
-  .cta { background: var(--yellow); color: var(--ink); border-color: var(--yellow); box-shadow: 4px 4px 0 var(--pink); }
-  .cta:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--pink); }
-  .notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; border-top: 2px dashed var(--muted); padding-top: 20px; }
-  .notes h2 { margin: 0 0 6px; font-family: var(--pixel); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--yellow); font-weight: 700; }
-  .notes p { margin: 0 0 8px; max-width: 62ch; color: var(--paper); }
-  .notes ol, .notes ul { margin: 0; padding-left: 20px; color: var(--paper); }
-  .notes code { font-family: var(--mono); color: var(--cyan); }
-  .post { background: var(--ink-2); border: 2px solid var(--muted); padding: 12px 14px; white-space: pre-wrap; font-size: 14px; user-select: all; }
-  .copyrow { display: flex; gap: 10px; align-items: center; margin-top: 10px; }
-  .copyrow span { font-family: var(--pixel); font-size: 12px; color: var(--cyan); }
 
   /* Embedded in fmxai.org/vibecheck/ (loaded with #embed): only the stage, filling the frame. */
   .embed body { padding: 0; overflow: hidden; }
   .embed .wrap { max-width: none; padding: 0; gap: 0; }
-  .embed .top, .embed .controls, .embed .notes { display: none; }
+  .embed .top, .embed .controls { display: none; }
   .embed .stage { position: fixed; inset: 0; width: auto; aspect-ratio: auto; border: 0; box-shadow: none; }
 </style>
 </head>
@@ -72,41 +61,8 @@
     <button id="play" aria-pressed="false">Pause</button>
     <button id="restart">Restart</button>
     <div class="chips" id="chips" aria-label="Jump to scene"></div>
-    <div class="spacer"></div>
-    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeD10bRGSgyzlZ0KS7YdnX85THZ4FASLeQMGIvkrNW7PKINzg/viewform" target="_blank" rel="noopener">Sign-up form ↗</a>
   </div>
 
-  <div class="notes">
-    <div>
-      <h2>The story in five beats</h2>
-      <ol>
-        <li>A pixel bird threads the pipes. Can you verify it?</li>
-        <li>It clips one. The checker finds a counterexample.</li>
-        <li>The invariant you'd need to prove. Prove it.</li>
-        <li>Flappy Bird, Word, Claude Code: all still open.</li>
-        <li>Title card and call to sign up.</li>
-      </ol>
-    </div>
-    <div>
-      <h2>Post copy</h2>
-      <div class="post" id="post">Can you formally verify Flappy Bird? What about Microsoft Word, or Claude Code?
-
-Vibecheck is a hackathon for usable formal methods. Build real software and prove it correct. Never touched Lean, Dafny or TLA+? Good. Experts will be in the room to help.
-
-Weekend of Nov 1. Compete, mentor or sponsor:
-https://docs.google.com/forms/d/e/1FAIpQLSeD10bRGSgyzlZ0KS7YdnX85THZ4FASLeQMGIvkrNW7PKINzg/viewform</div>
-      <div class="copyrow"><button id="copy">Copy text</button><span id="copied" aria-live="polite"></span></div>
-    </div>
-    <div>
-      <h2>For the team</h2>
-      <p>This is the working copy. It is embedded on <a href="/vibecheck/">fmxai.org/vibecheck</a> and plays there.</p>
-      <ul>
-        <li>Feedback: <a href="https://github.com/maxvonhippel/FMxAI/issues/new?title=Promo%20feedback&labels=vibecheck" target="_blank" rel="noopener">open an issue ↗</a>, or reply wherever this was shared.</li>
-        <li>Edits: the whole thing is one file, <code>public/vibecheck/promo.html</code> in <a href="https://github.com/maxvonhippel/FMxAI" target="_blank" rel="noopener">the repo ↗</a>. Open it in a browser to preview; a push to <code>main</code> deploys it.</li>
-        <li>Scenes are the functions <code>sceneFlap</code>, <code>sceneCrash</code>, <code>sceneProve</code>, <code>sceneScale</code>, <code>sceneTitle</code>; their start times are in <code>SCENES</code>.</li>
-      </ul>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -454,13 +410,6 @@ https://docs.google.com/forms/d/e/1FAIpQLSeD10bRGSgyzlZ0KS7YdnX85THZ4FASLeQMGIvk
         document.fonts.load(`20px "Space Mono"`), document.fonts.load(`20px "Noto Sans Math"`, "∀∃⊢∩∅")
       ]).catch(() => {}).then(start)
     : start();
-
-  // copy
-  document.getElementById("copy").addEventListener("click", async () => {
-    const el = document.getElementById("post"), out = document.getElementById("copied");
-    try { await navigator.clipboard.writeText(el.innerText); out.textContent = "Copied"; }
-    catch { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); out.textContent = "Selected. Press Ctrl/Cmd+C"; }
-  });
 })();
 </script>
 </body>
