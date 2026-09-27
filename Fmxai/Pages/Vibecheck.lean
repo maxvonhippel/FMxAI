@@ -32,7 +32,13 @@ def vibecheck : Page Route :=
                     div [] [strong [] ["Experience"], " ", span [] ["· None required"]] ],
                 div [.cls "btn-row"]
                   [ ext' [.cls "btn"] vibecheckFormUrl ["Sign up ↗"],
-                    a [.cls "btn-ghost", .href (.url "#about")] ["What is this?"] ] ] ],
+                    a [.cls "btn-ghost", .href (.url "#about")] ["What is this?"] ],
+                div [.cls "promo"]
+                  [ iframe [.cls "promo-frame", .src (vibecheckPromoUrl ++ "#embed"),
+                      .title "Vibecheck promo animation"] [],
+                    p [.cls "promo-caption"] ["A 25-second loop. Click it to pause. ",
+                      a [.href (.url vibecheckPromoUrl)] ["Open the promo on its own page"],
+                      " to jump between scenes, grab the post copy, or leave feedback."] ] ] ],
         «section» [.id "about"]
           [ div [.cls "container narrow"]
               [ h2 [] ["Is FM ready for prime time?"],

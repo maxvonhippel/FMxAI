@@ -25,5 +25,5 @@ lake env leanchecker Sites Fmxai
 
 echo "== the site builds"
 .lake/build/bin/fmxai build dist >/dev/null
-test -f dist/index.html && test -f dist/map/index.html && test -f dist/vibecheck/index.html && test -f dist/CNAME
+test -f dist/index.html && test -f dist/map/index.html && test -f dist/vibecheck/index.html && test -f dist/vibecheck/promo.html && test -f dist/CNAME
 echo "all checks passed"

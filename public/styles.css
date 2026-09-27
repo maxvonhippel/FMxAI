@@ -329,3 +329,20 @@ blockquote {
     margin-bottom: 2rem;
 }
 .mt-125 { margin-top: 1.25rem; }
+
+/* /vibecheck/ */
+.promo { margin-top: 2.5rem; }
+.promo-frame {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 3px solid #F2EEFF;
+    box-shadow: 8px 8px 0 #FF4FA3;
+    background: #1B1340;
+}
+.promo-caption {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    text-align: center;
+}

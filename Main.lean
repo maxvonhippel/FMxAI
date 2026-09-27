@@ -31,6 +31,7 @@ def contentType (p : System.FilePath) : String :=
   | some "png" => "image/png"
   | some "jpg" | some "jpeg" => "image/jpeg"
   | some "avif" => "image/avif"
+  | some "html" => "text/html; charset=utf-8"
   | _ => "application/octet-stream"
 
 /-- Serves pages from memory and static files from `public/`. Development only. -/

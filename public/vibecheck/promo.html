@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vibecheck Promo</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Silkscreen:wght@400;700&family=Space+Mono:wght@400;700&family=Noto+Sans+Math&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --ink: #1B1340;
+    --ink-2: #261B57;
+    --paper: #F2EEFF;
+    --pink: #FF4FA3;
+    --yellow: #FFE14D;
+    --cyan: #3FE0D0;
+    --muted: #A99BD9;
+    --display: "Rubik Mono One", "Arial Black", Impact, sans-serif;
+    --pixel: "Silkscreen", "Courier New", monospace;
+    --mono: "Space Mono", ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--ink); color: var(--paper); }
+  body { font-family: var(--mono); font-size: 15px; line-height: 1.6; padding-inline: 16px; }
+  a { color: var(--cyan); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-block: 28px 56px; display: grid; gap: 22px; }
+  .top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 20px; }
+  .top h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(22px, 4vw, 34px); letter-spacing: 0.02em; text-shadow: 3px 2px 0 var(--pink); }
+  .top .tag { font-family: var(--pixel); font-size: 13px; letter-spacing: 0.08em; color: var(--cyan); text-transform: uppercase; }
+  .stage { position: relative; width: 100%; max-width: 100%; aspect-ratio: 16 / 9; border: 3px solid var(--paper); box-shadow: 8px 8px 0 var(--pink); background: var(--ink); }
+  .stage canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; cursor: pointer; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  button, .cta { font-family: var(--pixel); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; border: 2px solid var(--paper); background: transparent; color: var(--paper); padding: 8px 12px; cursor: pointer; text-decoration: none; }
+  button:hover { background: var(--ink-2); }
+  button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+  button:focus-visible, .cta:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips button { border-color: var(--muted); color: var(--muted); font-size: 12px; padding: 6px 10px; }
+  .chips button[aria-pressed="true"] { background: var(--cyan); border-color: var(--cyan); color: var(--ink); }
+  .spacer { flex: 1; }
+  .cta { background: var(--yellow); color: var(--ink); border-color: var(--yellow); box-shadow: 4px 4px 0 var(--pink); }
+  .cta:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--pink); }
+  .notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; border-top: 2px dashed var(--muted); padding-top: 20px; }
+  .notes h2 { margin: 0 0 6px; font-family: var(--pixel); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--yellow); font-weight: 700; }
+  .notes p { margin: 0 0 8px; max-width: 62ch; color: var(--paper); }
+  .notes ol, .notes ul { margin: 0; padding-left: 20px; color: var(--paper); }
+  .notes code { font-family: var(--mono); color: var(--cyan); }
+  .post { background: var(--ink-2); border: 2px solid var(--muted); padding: 12px 14px; white-space: pre-wrap; font-size: 14px; user-select: all; }
+  .copyrow { display: flex; gap: 10px; align-items: center; margin-top: 10px; }
+  .copyrow span { font-family: var(--pixel); font-size: 12px; color: var(--cyan); }
+
+  /* Embedded in fmxai.org/vibecheck/ (loaded with #embed): only the stage, filling the frame. */
+  .embed body { padding: 0; overflow: hidden; }
+  .embed .wrap { max-width: none; padding: 0; gap: 0; }
+  .embed .top, .embed .controls, .embed .notes { display: none; }
+  .embed .stage { position: fixed; inset: 0; width: auto; aspect-ratio: auto; border: 0; box-shadow: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>VIBECHECK</h1>
+    <span class="tag">Animated promo · 25 sec loop</span>
+  </div>
+
+  <div class="stage"><canvas id="c" width="1280" height="720" aria-label="Animated promo for Vibecheck, the usable formal methods hackathon"></canvas></div>
+
+  <div class="controls">
+    <button id="play" aria-pressed="false">Pause</button>
+    <button id="restart">Restart</button>
+    <div class="chips" id="chips" aria-label="Jump to scene"></div>
+    <div class="spacer"></div>
+    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeD10bRGSgyzlZ0KS7YdnX85THZ4FASLeQMGIvkrNW7PKINzg/viewform" target="_blank" rel="noopener">Sign-up form ↗</a>
+  </div>
+
+  <div class="notes">
+    <div>
+      <h2>The story in five beats</h2>
+      <ol>
+        <li>A pixel bird threads the pipes. Can you verify it?</li>
+        <li>It clips one. The checker finds a counterexample.</li>
+        <li>The invariant you'd need to prove. Prove it.</li>
+        <li>Flappy Bird, Word, Claude Code: all still open.</li>
+        <li>Title card and call to sign up.</li>
+      </ol>
+    </div>
+    <div>
+      <h2>Post copy</h2>
+      <div class="post" id="post">Can you formally verify Flappy Bird? What about Microsoft Word, or Claude Code?
+
+Vibecheck is a hackathon for usable formal methods. Build real software and prove it correct. Never touched Lean, Dafny or TLA+? Good. Experts will be in the room to help.
+
+Weekend of Nov 1. Compete, mentor or sponsor:
+https://docs.google.com/forms/d/e/1FAIpQLSeD10bRGSgyzlZ0KS7YdnX85THZ4FASLeQMGIvkrNW7PKINzg/viewform</div>
+      <div class="copyrow"><button id="copy">Copy text</button><span id="copied" aria-live="polite"></span></div>
+    </div>
+    <div>
+      <h2>For the team</h2>
+      <p>This is the working copy. It is embedded on <a href="/vibecheck/">fmxai.org/vibecheck</a> and plays there.</p>
+      <ul>
+        <li>Feedback: <a href="https://github.com/maxvonhippel/FMxAI/issues/new?title=Promo%20feedback&labels=vibecheck" target="_blank" rel="noopener">open an issue ↗</a>, or reply wherever this was shared.</li>
+        <li>Edits: the whole thing is one file, <code>public/vibecheck/promo.html</code> in <a href="https://github.com/maxvonhippel/FMxAI" target="_blank" rel="noopener">the repo ↗</a>. Open it in a browser to preview; a push to <code>main</code> deploys it.</li>
+        <li>Scenes are the functions <code>sceneFlap</code>, <code>sceneCrash</code>, <code>sceneProve</code>, <code>sceneScale</code>, <code>sceneTitle</code>; their start times are in <code>SCENES</code>.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  if (location.hash === "#embed") document.documentElement.classList.add("embed");
+
+  const C = { ink:"#1B1340", ink2:"#261B57", paper:"#F2EEFF", pink:"#FF4FA3", yellow:"#FFE14D", cyan:"#3FE0D0", muted:"#A99BD9" };
+  const F = {
+    display: '"Rubik Mono One", "Arial Black", Impact, sans-serif',
+    pixel: '"Silkscreen", "Courier New", monospace',
+    mono: '"Space Mono", Menlo, monospace',
+    math: '"Noto Sans Math", "STIX Two Math", "Cambria Math", serif'
+  };
+  const cv = document.getElementById("c");
+  const g = cv.getContext("2d");
+  const W = 1280, H = 720, LOOP = 25;
+  const SCENES = [
+    { at: 0, name: "Flap" },
+    { at: 5, name: "Crash" },
+    { at: 9.5, name: "Prove" },
+    { at: 14, name: "Scale up" },
+    { at: 18.5, name: "Title" }
+  ];
+
+  // ---------- helpers ----------
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const ease = x => 1 - Math.pow(1 - clamp(x, 0, 1), 3);
+  const back = x => { x = clamp(x, 0, 1); const s = 1.7; return 1 + (s + 1) * Math.pow(x - 1, 3) + s * Math.pow(x - 1, 2); };
+  const prog = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+
+  // misregistered riso text: pink plate offset under the main plate
+  function riso(txt, x, y, font, color, off = 4, align = "left", under = C.pink) {
+    g.font = font; g.textAlign = align; g.textBaseline = "alphabetic";
+    g.fillStyle = under; g.fillText(txt, x + off, y + off * 0.6);
+    g.fillStyle = color; g.fillText(txt, x, y);
+  }
+  function typed(txt, p) { return txt.slice(0, Math.floor(txt.length * clamp(p, 0, 1))); }
+
+  // halftone dot field, pre-rendered
+  const dots = document.createElement("canvas"); dots.width = W; dots.height = H;
+  (() => {
+    const d = dots.getContext("2d");
+    for (let y = 0; y < H; y += 14) for (let x = (y / 14) % 2 ? 7 : 0; x < W; x += 14) {
+      const r = 1 + 2.2 * Math.pow(y / H, 1.6);
+      d.fillStyle = "rgba(255,79,163,0.16)";
+      d.beginPath(); d.arc(x, y, r, 0, Math.PI * 2); d.fill();
+    }
+  })();
+
+  // scanlines
+  const scan = document.createElement("canvas"); scan.width = W; scan.height = H;
+  (() => { const d = scan.getContext("2d"); d.fillStyle = "rgba(0,0,0,0.13)"; for (let y = 0; y < H; y += 4) d.fillRect(0, y, W, 2); })();
+
+  // pixel bird, 12 x 9, P = pixel size
+  const BIRD = [
+    "....YYYY....",
+    "..YYYYWWW...",
+    ".YYYYYWWKW..",
+    "PPPPYYWWWW..",
+    "PPPPPYYYOOOO",
+    "PPPPPYYOOOO.",
+    ".YYYYYYYY...",
+    "..YYYYYY....",
+    "............"
+  ];
+  const BIRD_UP = BIRD.slice(); BIRD_UP[3] = "YYYYYYWWWW.."; BIRD_UP[4] = ".YYYYYYYOOOO"; BIRD_UP[5] = "PPPPPYYOOOO."; BIRD_UP[1] = "PPYYYYWWW...";
+  const PAL = { Y: C.yellow, W: C.paper, K: C.ink, P: C.pink, O: "#FF8A3D" };
+  function bird(x, y, P, flap, rot = 0) {
+    const map = flap ? BIRD_UP : BIRD;
+    g.save(); g.translate(x, y); g.rotate(rot);
+    const ox = -6 * P, oy = -4.5 * P;
+    for (let r = 0; r < map.length; r++) for (let c = 0; c < 12; c++) {
+      const k = map[r][c]; if (k === ".") continue;
+      g.fillStyle = PAL[k]; g.fillRect(ox + c * P, oy + r * P, P + 0.5, P + 0.5);
+    }
+    g.restore();
+  }
+
+  // pipes
+  const GAP = 230, PW = 104, SPACING = 360, SPEED = 190;
+  const centers = [360, 300, 420, 330, 440, 290, 380, 350, 410, 320];
+  function pipeCenter(i) { return centers[((i % centers.length) + centers.length) % centers.length]; }
+  function drawPipe(x, cy, color = C.cyan, label) {
+    const top = cy - GAP / 2, bot = cy + GAP / 2;
+    g.fillStyle = color;
+    g.fillRect(x, 0, PW, top); g.fillRect(x, bot, PW, H - bot);
+    g.fillRect(x - 10, top - 34, PW + 20, 34); g.fillRect(x - 10, bot, PW + 20, 34);
+    g.fillStyle = "rgba(27,19,64,0.28)";
+    for (let yy = 0; yy < top - 34; yy += 8) g.fillRect(x + 14, yy, 10, 4);
+    for (let yy = bot + 42; yy < H; yy += 8) g.fillRect(x + 14, yy, 10, 4);
+    if (label) {
+      g.save(); g.translate(x + PW / 2, bot + 110); g.rotate(-Math.PI / 2);
+      g.font = `28px ${F.math}`; g.fillStyle = C.ink; g.textAlign = "center"; g.fillText(label, 0, 10);
+      g.restore();
+    }
+  }
+  const LABELS = ["∀", "⊢", "∃", "⟹", "∧", "¬", "⊨", "□", "λ", "≡"];
+
+  // world at time tt (seconds of scroll)
+  const BX = 330;
+  function birdY(tt) {
+    const scroll = tt * SPEED;
+    const first = W + 40;
+    // pipe index whose left edge the bird is approaching
+    const rel = (scroll - (first - BX)) / SPACING;
+    const i = Math.floor(rel), f = rel - i;
+    const a = i < 0 ? 360 : pipeCenter(i), b = pipeCenter(i + 1);
+    const k = clamp((f - 0.35) / 0.55, 0, 1);
+    const s = k * k * (3 - 2 * k);
+    return a + (b - a) * s + Math.sin(tt * 9) * 10;
+  }
+  function world(tt, opts = {}) {
+    const scroll = tt * SPEED, first = W + 40;
+    for (let i = 0; i < 40; i++) {
+      const x = first + i * SPACING - scroll;
+      if (x < -PW - 30) continue; if (x > W + 30) break;
+      drawPipe(x, pipeCenter(i), opts.pipeColor || C.cyan, LABELS[i % LABELS.length]);
+    }
+    const y = opts.birdY != null ? opts.birdY : birdY(tt);
+    bird(BX, y, 7, Math.floor(tt * 8) % 2 === 0, opts.rot || Math.sin(tt * 9 + 1) * 0.12);
+    // ground
+    g.fillStyle = C.ink2; g.fillRect(0, H - 40, W, 40);
+    g.fillStyle = C.pink;
+    for (let x = -((scroll) % 40); x < W; x += 40) g.fillRect(x, H - 40, 20, 6);
+  }
+  function hud(score, extra) {
+    g.font = `26px ${F.pixel}`; g.textAlign = "left"; g.fillStyle = C.paper;
+    g.fillText(`SCORE ${String(score).padStart(4, "0")}`, 40, 56);
+    if (extra) { g.textAlign = "right"; g.fillStyle = C.cyan; g.fillText(extra, W - 40, 56); }
+  }
+  function box(x, y, w, h, fill, stroke) {
+    g.fillStyle = C.pink; g.fillRect(x + 10, y + 10, w, h);
+    g.fillStyle = fill; g.fillRect(x, y, w, h);
+    g.strokeStyle = stroke; g.lineWidth = 4; g.strokeRect(x, y, w, h);
+  }
+  function stamp(txt, x, y, size, color, rot, p) {
+    const s = 1 + 1.6 * (1 - ease(p));
+    g.save(); g.globalAlpha = clamp(p * 3, 0, 1);
+    g.translate(x, y); g.rotate(rot); g.scale(s, s);
+    g.font = `${size}px ${F.display}`; g.textAlign = "center"; g.textBaseline = "middle";
+    const w = g.measureText(txt).width + size * 0.9, h = size * 1.5;
+    g.strokeStyle = color; g.lineWidth = 6; g.strokeRect(-w / 2, -h / 2, w, h);
+    g.lineWidth = 2; g.strokeRect(-w / 2 + 9, -h / 2 + 9, w - 18, h - 18);
+    g.fillStyle = color; g.fillText(txt, 0, 4);
+    g.restore();
+  }
+
+  // ---------- scenes ----------
+  function sceneFlap(t) {
+    world(t);
+    hud(Math.floor(t * 1.9));
+    const p = prog(t, 0.6, 2.2);
+    box(60, 470, 760, 150, C.ink, C.paper);
+    riso(typed("Can you formally", p * 1.6), 90, 530, `40px ${F.display}`, C.paper, 3);
+    riso(typed("verify Flappy Bird?", p * 1.6 - 0.6), 90, 590, `40px ${F.display}`, C.yellow, 3);
+  }
+
+  function sceneCrash(t) {
+    const lt = t - 5;
+    const frozen = 5 + 0.9; // world time when it hits
+    const hit = lt > 0.9;
+    const wt = hit ? frozen : 5 + lt;
+    let by = birdY(wt);
+    // drift the bird down into the lower pipe lip
+    const drift = ease(prog(lt, 0.1, 0.9)) * 140;
+    by += drift;
+    const shake = hit && lt < 1.4 ? (Math.random() - 0.5) * 18 : 0;
+    g.save(); g.translate(shake, shake * 0.5);
+    world(wt, { birdY: by, rot: hit ? 0.9 : 0.35 });
+    g.restore();
+    hud(Math.floor(wt * 1.9), hit ? "HALTED" : "");
+    if (hit && lt < 1.15) { g.fillStyle = "rgba(255,79,163,0.55)"; g.fillRect(0, 0, W, H); }
+    if (hit) {
+      const p = prog(lt, 1.1, 1.5);
+      g.save(); g.globalAlpha = p;
+      box(560, 150, 660, 330, C.ink, C.pink);
+      g.font = `30px ${F.pixel}`; g.textAlign = "left"; g.fillStyle = C.pink;
+      g.fillText("✗ COUNTEREXAMPLE", 594, 206);
+      g.font = `22px ${F.mono}`; g.fillStyle = C.paper;
+      const lines = ["frame 1337", "  bird.y     = 523", "  pipe.lip   = 509", "  overlap    = 14px"];
+      const q = prog(lt, 1.5, 3.2);
+      lines.forEach((l, i) => { const s = typed(l, q * lines.length - i); if (s) g.fillText(s, 600, 262 + i * 36); });
+      g.font = `30px ${F.math}`; g.fillStyle = C.yellow;
+      const q2 = prog(lt, 3.1, 4.1);
+      g.fillText(typed("∃ t. bird(t) ∩ pipes(t) ≠ ∅", q2), 600, 438);
+      g.restore();
+    }
+  }
+
+  function sceneProve(t) {
+    const lt = t - 9.5;
+    g.save(); g.globalAlpha = 0.35; world(9.5 + lt * 0.9); g.restore();
+    g.fillStyle = "rgba(27,19,64,0.55)"; g.fillRect(0, 0, W, H);
+    const p = prog(lt, 0.1, 0.7);
+    g.save(); g.globalAlpha = p;
+    g.font = `24px ${F.pixel}`; g.textAlign = "center"; g.fillStyle = C.cyan;
+    g.fillText("THE GOAL", W / 2, 180);
+    g.restore();
+    const s = back(prog(lt, 0.4, 1.0));
+    g.save(); g.translate(W / 2, 320); g.scale(s, s);
+    riso("∀ t. bird(t) ∩ pipes(t) = ∅", 0, 0, `66px ${F.math}`, C.paper, 5, "center");
+    g.restore();
+    const q = prog(lt, 1.6, 2.1);
+    g.save(); g.globalAlpha = q;
+    g.font = `22px ${F.mono}`; g.textAlign = "center"; g.fillStyle = C.muted;
+    g.fillText("in Lean, Dafny, Z3... over the real game code, end to end", W / 2, 400);
+    g.restore();
+    if (lt > 2.3) stamp("PROVE IT", W / 2 + 40, 520, 64, C.yellow, -0.08, prog(lt, 2.3, 2.75));
+  }
+
+  function sceneScale(t) {
+    const lt = t - 14;
+    riso("Now do it for", 90, 150, `50px ${F.display}`, C.paper, 4);
+    const items = [
+      { txt: "Flappy Bird", ok: null },
+      { txt: "Microsoft Word", ok: null },
+      { txt: "Claude Code", ok: null },
+      { txt: "your startup, from day one", ok: null }
+    ];
+    items.forEach((it, i) => {
+      const p = prog(lt, 0.4 + i * 0.45, 0.75 + i * 0.45);
+      if (!p) return;
+      const y = 240 + i * 82, x = 90 + (1 - ease(p)) * -60;
+      g.save(); g.globalAlpha = ease(p);
+      g.strokeStyle = C.paper; g.lineWidth = 4; g.strokeRect(x, y - 38, 46, 46);
+      g.font = `38px ${F.pixel}`; g.textAlign = "center";
+      if (it.ok) { g.fillStyle = C.cyan; g.fillText("✓", x + 23, y + 1); }
+      else { g.fillStyle = C.pink; g.fillText(Math.floor(t * 3) % 2 ? "?" : "", x + 23, y + 1); }
+      g.textAlign = "left"; g.font = `40px ${F.mono}`; g.fillStyle = it.ok ? C.muted : C.paper;
+      g.fillText(it.txt, x + 76, y);
+      if (it.ok) { g.fillStyle = C.muted; g.fillRect(x + 76, y - 14, g.measureText(it.txt).width, 4); }
+      g.restore();
+    });
+    if (lt > 2.6) stamp("NO PhD REQUIRED", 900, 590, 44, C.yellow, 0.06, prog(lt, 2.6, 3.05));
+    // little bird flying across
+    const bx = -80 + ((lt * 260) % (W + 160));
+    bird(bx, 80 + Math.sin(lt * 6) * 14, 4, Math.floor(lt * 8) % 2 === 0, 0.1);
+  }
+
+  function sceneTitle(t) {
+    const lt = t - 18.5;
+    // pixel reveal of the wordmark
+    const p = prog(lt, 0.0, 0.9);
+    const word = "VIBECHECK";
+    g.font = `128px ${F.display}`; g.textAlign = "center";
+    const shown = typed(word, p * 1.05);
+    const jitter = lt < 1.2 ? Math.sin(lt * 50) * 3 : 0;
+    g.fillStyle = C.cyan; g.fillText(shown, W / 2 - 8 + jitter, 250 - 4);
+    g.fillStyle = C.pink; g.fillText(shown, W / 2 + 8, 250 + 5);
+    g.fillStyle = C.paper; g.fillText(shown, W / 2, 250);
+    const q = prog(lt, 0.9, 1.4);
+    g.save(); g.globalAlpha = q;
+    g.font = `30px ${F.pixel}`; g.fillStyle = C.yellow;
+    g.fillText("THE USABLE FORMAL METHODS HACKATHON", W / 2, 320);
+    g.restore();
+    const r = prog(lt, 1.5, 2.0);
+    g.save(); g.globalAlpha = r;
+    box(W / 2 - 440, 370, 880, 150, C.ink, C.paper);
+    g.font = `26px ${F.mono}`; g.fillStyle = C.paper; g.textAlign = "center";
+    g.fillText("Build real software. Prove it correct.", W / 2, 420);
+    g.fillStyle = C.cyan;
+    g.fillText("Never used Lean, Dafny or TLA+? Perfect.", W / 2, 468);
+    g.font = `20px ${F.pixel}`; g.fillStyle = C.muted;
+    g.fillText("EXPERTS ON THE FLOOR TO GET YOU UNSTUCK", W / 2, 504);
+    g.restore();
+    const s = prog(lt, 2.3, 2.8);
+    g.save(); g.globalAlpha = s;
+    g.font = `34px ${F.display}`; g.fillStyle = C.yellow;
+    g.fillText("WEEKEND OF NOV 1", W / 2, 600);
+    g.font = `22px ${F.pixel}`; g.fillStyle = C.paper;
+    g.fillText("COMPETE  ·  MENTOR  ·  SPONSOR", W / 2, 640);
+    g.restore();
+    if (lt > 3.2 && Math.floor(lt * 2.4) % 2 === 0) {
+      g.font = `22px ${F.pixel}`; g.fillStyle = C.pink;
+      g.fillText("▶ INSERT COIN: SIGN UP AT THE LINK", W / 2, 690);
+    }
+    // birds orbiting the wordmark
+    bird(160 + Math.sin(lt * 1.3) * 30, 120 + Math.sin(lt * 5) * 10, 5, Math.floor(lt * 8) % 2 === 0, 0.1);
+    bird(1120 + Math.cos(lt * 1.1) * 30, 140 + Math.cos(lt * 5) * 10, 5, Math.floor(lt * 8 + 1) % 2 === 0, -0.1);
+  }
+
+  function transition(t) {
+    // pixel-block wipe at each scene boundary
+    for (const s of SCENES.slice(1).concat([{ at: LOOP }])) {
+      const d = t - (s.at - 0.25);
+      if (d < 0 || d > 0.5) continue;
+      const k = 1 - Math.abs(d - 0.25) / 0.25; // 0..1..0
+      const B = 40;
+      g.fillStyle = C.ink;
+      for (let y = 0; y < H; y += B) for (let x = 0; x < W; x += B) {
+        const n = ((x * 13 + y * 7) % 97) / 97;
+        if (n < k) g.fillRect(x, y, B, B);
+      }
+    }
+  }
+
+  function frame(t) {
+    g.setTransform(1, 0, 0, 1, 0, 0);
+    g.fillStyle = C.ink; g.fillRect(0, 0, W, H);
+    g.drawImage(dots, 0, 0);
+    if (t < 5) sceneFlap(t);
+    else if (t < 9.5) sceneCrash(t);
+    else if (t < 14) sceneProve(t);
+    else if (t < 18.5) sceneScale(t);
+    else sceneTitle(t);
+    transition(t);
+    g.drawImage(scan, 0, 0);
+  }
+
+  // ---------- playback ----------
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let playing = !reduce, t = reduce ? 22.5 : 0, last = null;
+  const playBtn = document.getElementById("play");
+  const chips = document.getElementById("chips");
+  SCENES.forEach(s => {
+    const b = document.createElement("button");
+    b.textContent = s.name; b.type = "button";
+    b.addEventListener("click", () => { t = s.at; if (!playing) frame(t); sync(); });
+    chips.appendChild(b);
+  });
+  function sync() {
+    playBtn.textContent = playing ? "Pause" : "Play";
+    playBtn.setAttribute("aria-pressed", String(!playing));
+    let cur = 0; SCENES.forEach((s, i) => { if (t >= s.at) cur = i; });
+    [...chips.children].forEach((b, i) => b.setAttribute("aria-pressed", String(i === cur)));
+  }
+  const toggle = () => { playing = !playing; last = null; sync(); };
+  playBtn.addEventListener("click", toggle);
+  cv.addEventListener("click", toggle);
+  document.getElementById("restart").addEventListener("click", () => { t = 0; last = null; if (!playing) frame(t); sync(); });
+  let lastChip = -1;
+  function loop(now) {
+    if (playing) {
+      if (last != null) t = (t + Math.min(0.1, (now - last) / 1000)) % LOOP;
+      last = now; frame(t);
+      const cur = SCENES.filter(s => t >= s.at).length - 1;
+      if (cur !== lastChip) { lastChip = cur; sync(); }
+    }
+    requestAnimationFrame(loop);
+  }
+  const start = () => { frame(t); sync(); requestAnimationFrame(loop); };
+  (document.fonts && document.fonts.load)
+    ? Promise.all([
+        document.fonts.load(`40px "Rubik Mono One"`), document.fonts.load(`20px "Silkscreen"`),
+        document.fonts.load(`20px "Space Mono"`), document.fonts.load(`20px "Noto Sans Math"`, "∀∃⊢∩∅")
+      ]).catch(() => {}).then(start)
+    : start();
+
+  // copy
+  document.getElementById("copy").addEventListener("click", async () => {
+    const el = document.getElementById("post"), out = document.getElementById("copied");
+    try { await navigator.clipboard.writeText(el.innerText); out.textContent = "Copied"; }
+    catch { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); out.textContent = "Selected. Press Ctrl/Cmd+C"; }
+  });
+})();
+</script>
+</body>
+</html>
