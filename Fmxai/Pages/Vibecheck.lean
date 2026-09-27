@@ -49,14 +49,14 @@ def vibecheck : Page Route :=
         «section» [.id "roles"]
           [ div [.cls "container"]
               [ h2 [] ["Take part"],
-                p [.cls "narrow"] ["Competitors are people with little or no formal methods experience; experts are people with a lot of it. We are aiming for roughly five competitors to every expert, so nobody is stuck for long."],
+                p [.cls "narrow"] ["Competitors are people with little or no formal methods experience; experts are people with a lot of it."],
                 div [.cls "cards"]
                   [ role "Compete" [strong [] ["Zero to not a lot of FM experience."], " Build a piece of real-world production software and formally verify it. Solo, with a team you bring, or with people you meet on the day."],
                     role "Help" [strong [] ["Significant FM experience."], " A year or more of full-time work with at least one FM tool, or close to it. Walk around the room and unstick competitors when they get stuck."],
                     role "Sponsor" ["Provide prizes, swag, food, compute, tokens, and other things that make a weekend go better."] ],
                 div [.cls "callout mt-2"]
-                  [ p [] ["Looking to hire formal methods people, or to be hired? The sign-up form asks, so we can put you in touch."],
-                    ext vibecheckFormUrl ["Say so on the form ↗"] ] ] ],
+                  [ p [] ["We are targeting a ratio of roughly ", strong [] ["five competitors to one expert"],
+                      ", so there is always someone nearby who has seen your error before."] ] ] ],
         «section» [.id "signup"]
           [ div [.cls "container narrow"]
               [ h2 [] ["Sign up"],
