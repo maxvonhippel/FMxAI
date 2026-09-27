@@ -4,6 +4,7 @@ public import Fmxai.Pages.Home
 public import Fmxai.Pages.Y2025
 public import Fmxai.Pages.Y2026
 public import Fmxai.Pages.MapPage
+public import Fmxai.Pages.Vibecheck
 public import Fmxai.Map.Verified
 
 /-!
@@ -60,6 +61,7 @@ def site : Site Route :=
       | .y2025 => Pages.y2025
       | .y2026 => Pages.y2026
       | .map => Pages.mapPage Map.theLayout
+      | .vibecheck => Pages.vibecheck
     layout := chrome }
 
 end

@@ -19,6 +19,7 @@ open Sites Sites.Html Fmxai Fmxai.Map
 #guard site.url .home = "/"
 #guard site.url .y2026 = "/2026/"
 #guard site.url .map = "/map/"
+#guard site.url .vibecheck = "/vibecheck/"
 #guard site.route? "/2025/" = some .y2025
 #guard site.route? "/nope/" = none
 

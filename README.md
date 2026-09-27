@@ -19,7 +19,7 @@ With Nix, `nix develop` provides `elan`, which picks up `lean-toolchain`.
 
 | Path | What it is |
 | --- | --- |
-| `Fmxai/Route.lean` | The four routes, and the header, footer and other shared markup. |
+| `Fmxai/Route.lean` | The five routes, and the header, footer and other shared markup. |
 | `Fmxai/Pages/*.lean` | The pages, as Lean terms in the typed HTML DSL. |
 | `Fmxai/Site.lean` | The `Site`: document chrome and the route table with its proofs. |
 | `Fmxai/Map/Data.lean` | **The map's data.** Edit this to add an organisation or category. |

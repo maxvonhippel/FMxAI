@@ -26,7 +26,7 @@ def home : Page Route :=
   { title := "Formal Methods × AI"
     description := "Formal Methods × AI — a community and event series for researchers, labs, and funders working at the intersection of formal methods and artificial intelligence."
     body :=
-      [ siteHeader "FMxAI" ([a [.href (.url "#events")] ["Events"]] ++ navTail),
+      [ siteHeader "FMxAI" ([a [.href (.url "#events")] ["Events"], a [.href (.route .vibecheck)] ["Vibecheck"]] ++ navTail),
         div [.cls "hero"]
           [ div [.cls "container"]
               [ div [.cls "eyebrow"] ["Formal Methods × Artificial Intelligence"],
@@ -40,7 +40,10 @@ def home : Page Route :=
               [ h2 [] ["The event series"],
                 p [.cls "narrow"] ["An invitation-only gathering of FM researchers, frontier AI labs, government research staff, startup founders, and funders — built for shared problem-scoping, not paper presentations. Organized by Atlas Computing."],
                 div [.cls "events"]
-                  [ eventCard "Upcoming" "upcoming" "FMxAI 2027" "March 8–10, 2027 · London"
+                  [ eventCard "Upcoming" "upcoming" "Vibecheck" "Weekend of November 1, 2026"
+                      ["The usable formal methods hackathon: build a piece of real-world production software, and formally verify it. Competitors, experts and sponsors welcome."]
+                      (some (.route .vibecheck, "Sign up for Vibecheck →")),
+                    eventCard "Upcoming" "upcoming" "FMxAI 2027" "March 8–10, 2027 · London"
                       ["There's no event page yet. Want to express interest in attending? Email ",
                        a [.href (.url "mailto:fmxai@atlascomputing.org")] ["fmxai@atlascomputing.org"], "."]
                       none,

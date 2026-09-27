@@ -4,7 +4,7 @@ public import Sites
 /-!
 # Routes and shared chrome
 
-The four pages of fmxai.org. Every internal link on the site is a `Route`, so a link to a
+The five pages of fmxai.org. Every internal link on the site is a `Route`, so a link to a
 page that does not exist is a type error; `Fmxai.site` proves the route table complete and the
 URLs distinct.
 -/
@@ -25,10 +25,12 @@ inductive Route where
   | y2026
   /-- `/map/`: the community map. -/
   | map
+  /-- `/vibecheck/`: the usable formal methods hackathon. -/
+  | vibecheck
   deriving DecidableEq, Repr
 
 /-- All routes. -/
-def routes : List Route := [.home, .y2026, .y2025, .map]
+def routes : List Route := [.home, .vibecheck, .y2026, .y2025, .map]
 
 /-- Where each route lives. -/
 def path : Route → Path
@@ -36,6 +38,7 @@ def path : Route → Path
   | .y2025 => [seg "2025"]
   | .y2026 => [seg "2026"]
   | .map => [seg "map"]
+  | .vibecheck => [seg "vibecheck"]
 
 /-- Route lookup. -/
 def route? : List Char → Option Route := routeOfChars routes path
@@ -49,11 +52,19 @@ def fellowshipUrl : String :=
 def sourceUrl : String := "https://github.com/maxvonhippel/FMxAI"
 /-- Where to express interest in the next edition. -/
 def contactUrl : String := "mailto:fmxai@atlasignota.org"
+/-- The Vibecheck hackathon sign-up form. -/
+def vibecheckFormUrl : String :=
+  "https://docs.google.com/forms/d/e/1FAIpQLSeD10bRGSgyzlZ0KS7YdnX85THZ4FASLeQMGIvkrNW7PKINzg/viewform"
 
 /-- An external link, opened in a new tab. -/
 def ext {c : Ctx} (url : String) (children : List (Node Route .phrasing))
     (h : Fits .phrasing c := by fits) : Node Route c :=
   a [.href (.url url), .target "_blank", .rel "noopener"] children h
+
+/-- An external link with extra attributes (a class, say), opened in a new tab. -/
+def ext' {c : Ctx} (attrs : List (Attr Route)) (url : String) (children : List (Node Route .phrasing))
+    (h : Fits .phrasing c := by fits) : Node Route c :=
+  a (attrs ++ [.href (.url url), .target "_blank", .rel "noopener"]) children h
 
 /-! ## Chrome -/
 
