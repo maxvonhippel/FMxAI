@@ -4,9 +4,8 @@ import Fmxai
 /-!
 # `fmxai build [DIR]` / `fmxai serve [PORT]`
 
-The site is the constant `Fmxai.site`; the map layout inside it was computed and checked when
-`Fmxai.Map.Verified` compiled. Everything under `public/` is copied into the output next to
-the generated pages.
+The site is the constant `Fmxai.site`. Everything under `public/` is copied into the output
+next to the generated pages.
 -/
 
 open Sites Std Std.Http Std.Async

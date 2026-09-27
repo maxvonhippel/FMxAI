@@ -34,7 +34,7 @@ def home : Page Route :=
                 p [.cls "lede"] ["AI is making it cheap to write code and proofs; formal methods make it possible to trust them. The intersection is where verifiable, safety-critical systems get built — and it's badly under-coordinated. FMxAI brings the two communities into one room to scope what to build next."],
                 div [.cls "btn-row"]
                   [ a [.cls "btn", .href (.url contactUrl)] ["Express interest in FMxAI 2027 →"],
-                    a [.cls "btn-ghost", .href (.route .map)] ["Explore the map"] ] ] ],
+                    a [.cls "btn-ghost", .href (.route .vibecheck)] ["Vibecheck hackathon"] ] ] ],
         «section» [.id "events"]
           [ div [.cls "container"]
               [ h2 [] ["The event series"],
@@ -60,12 +60,9 @@ def home : Page Route :=
           [ div [.cls "container"]
               [ h2 [] ["Beyond the conference"],
                 div [.cls "callout"]
-                  [ p [] ["The ", strong [] ["FMxAI map"], " tracks groups, projects, and resources at the intersection of formal methods and AI."],
-                    a [.href (.route .map)] ["Open the map →"] ],
-                div [.cls "callout"]
                   [ p [] ["The ", strong [] ["Secure Program Synthesis Fellowship"], ", run with Apart Research, supports work on trustworthy AI-generated code."],
                     ext fellowshipUrl ["Learn about the fellowship ↗"] ] ] ],
-        siteFooter false ] }
+        siteFooter ] }
 
 end
 

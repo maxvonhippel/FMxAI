@@ -4,7 +4,7 @@ public import Sites
 /-!
 # Routes and shared chrome
 
-The five pages of fmxai.org. Every internal link on the site is a `Route`, so a link to a
+The four pages of fmxai.org. Every internal link on the site is a `Route`, so a link to a
 page that does not exist is a type error; `Fmxai.site` proves the route table complete and the
 URLs distinct.
 -/
@@ -23,21 +23,18 @@ inductive Route where
   | y2025
   /-- `/2026/`: the second edition. -/
   | y2026
-  /-- `/map/`: the community map. -/
-  | map
   /-- `/vibecheck/`: the usable formal methods hackathon. -/
   | vibecheck
   deriving DecidableEq, Repr
 
 /-- All routes. -/
-def routes : List Route := [.home, .vibecheck, .y2026, .y2025, .map]
+def routes : List Route := [.home, .vibecheck, .y2026, .y2025]
 
 /-- Where each route lives. -/
 def path : Route → Path
   | .home => []
   | .y2025 => [seg "2025"]
   | .y2026 => [seg "2026"]
-  | .map => [seg "map"]
   | .vibecheck => [seg "vibecheck"]
 
 /-- Route lookup. -/
@@ -78,22 +75,17 @@ def siteHeader (brand : String) (links : List (Node Route .flow)) : Node Route .
         [ a [.cls "brand", .href (.route .home)] [img [.src "/favicon.svg", .alt ""], span [] [brand]],
           nav [] links ] ]
 
-/-- The two navigation entries every page ends with. -/
+/-- The navigation entry every page ends with. -/
 def navTail : List (Node Route .flow) :=
-  [ a [.cls "nav-keep", .href (.route .map)] ["Map"],
-    a [.cls "nav-keep cta-link", .href (.url fellowshipUrl), .target "_blank", .rel "noopener"]
+  [ a [.cls "nav-keep cta-link", .href (.url fellowshipUrl), .target "_blank", .rel "noopener"]
       ["Fellowship ↗"] ]
 
-/-- The footer; event pages also point at the map. -/
-def siteFooter (mapLine : Bool) : Node Route .flow :=
+/-- The footer. -/
+def siteFooter : Node Route .flow :=
   footer [.cls "site"]
     [ div [.cls "container"]
-        ((if mapLine then
-            [p [] ["The ", a [.href (.route .map)] ["FMxAI map"],
-              " tracks groups and projects at the intersection of formal methods and AI."]]
-          else []) ++
-         [p [] [a [.href (.url "https://fmxai.org")] ["fmxai.org"], " · ",
-           a [.href (.url sourceUrl)] ["source"]]]) ]
+        [ p [] [a [.href (.url "https://fmxai.org")] ["fmxai.org"], " · ",
+            a [.href (.url sourceUrl)] ["source"]] ] ]
 
 /-- The "Venue & logistics" grid shared by the event pages. -/
 def logisticsGrid (venue : List (Node Route .flow)) (transit : List (Node Route .listItem))

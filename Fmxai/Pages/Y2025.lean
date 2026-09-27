@@ -75,7 +75,7 @@ def y2025 : Page Route :=
               [ h2 [] ["Organization & support"],
                 p [] ["Organized by Atlas Computing, with funding support from the Beneficial AI Foundation."],
                 p [.cls "mt-125"] [a [.cls "btn", .href (.route .y2026)] ["See FMxAI 2026 →"]] ] ],
-        siteFooter true ] }
+        siteFooter ] }
 
 end
 

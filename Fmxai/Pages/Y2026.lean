@@ -113,7 +113,7 @@ def y2026 : Page Route :=
                 iframe [.cls "doc-frame",
                   .src "https://docs.google.com/document/d/1SbRW-7qws0z7VHSQlhcVJoog3gix0FMmuDsa0z7jYk8/preview",
                   .title "FMxAI 2026 detailed agenda", .loading "lazy"] [] ] ],
-        siteFooter true ] }
+        siteFooter ] }
 
 end
 

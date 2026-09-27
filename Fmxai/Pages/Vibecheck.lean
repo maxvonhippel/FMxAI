@@ -64,7 +64,7 @@ def vibecheck : Page Route :=
                 div [.cls "btn-row"]
                   [ ext' [.cls "btn"] vibecheckFormUrl ["Open the sign-up form ↗"] ],
                 p [.cls "mt-2"] ["Questions? Email ", a [.href (.url contactUrl)] ["fmxai@atlasignota.org"], "."] ] ],
-        siteFooter true ] }
+        siteFooter ] }
 
 end
 

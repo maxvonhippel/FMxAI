@@ -27,6 +27,5 @@ Lines ending with `{.classname}` get extra styling. Already-used classes:
 - `{.venue}` — muted venue line
 - `{.notice}` — red attention text (e.g. the ID-required reminder)
 - `{.agenda-note}` — small italic footnote under the agenda
-- `{.map-callout-link}` — turns a link into the styled "open the map" callout
 
 You usually won't need to touch these — they're already in place. If you add a new section that needs styling, ask the developer.
