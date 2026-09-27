@@ -49,10 +49,10 @@ def vibecheck : Page Route :=
         «section» [.id "roles"]
           [ div [.cls "container"]
               [ h2 [] ["Take part"],
-                p [.cls "narrow"] ["Whatever your formal methods background, from nonexistent to a career's worth, there is a way in."],
+                p [.cls "narrow"] ["Competitors are people with little or no formal methods experience; experts are people with a lot of it. We are aiming for roughly five competitors to every expert, so nobody is stuck for long."],
                 div [.cls "cards"]
-                  [ role "Compete" ["Build a piece of real-world production software and formally verify it. Solo, with a team you bring, or with people you meet on the day."],
-                    role "Help" ["Walk around the room and unstick people who are new to formal methods. Experienced practitioners wanted."],
+                  [ role "Compete" [strong [] ["Zero to not a lot of FM experience."], " Build a piece of real-world production software and formally verify it. Solo, with a team you bring, or with people you meet on the day."],
+                    role "Help" [strong [] ["Significant FM experience."], " A year or more of full-time work with at least one FM tool, or close to it. Walk around the room and unstick competitors when they get stuck."],
                     role "Sponsor" ["Provide prizes, swag, food, compute, tokens, and other things that make a weekend go better."] ],
                 div [.cls "callout mt-2"]
                   [ p [] ["Looking to hire formal methods people, or to be hired? The sign-up form asks, so we can put you in touch."],
