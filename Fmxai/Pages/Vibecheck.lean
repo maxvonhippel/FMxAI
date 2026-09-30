@@ -81,7 +81,7 @@ def vibecheck : Page Route :=
                     sponsor "omni.co" "https://omni.co",
                     sponsor "Prime Intellect" "https://www.primeintellect.ai",
                     sponsor "Math Inc" "https://www.math.inc",
-                    sponsor "For-All" "https://for-all.dev",
+                    sponsor "Forall R&D" "https://for-all.dev",
                     sponsor "Atlas Ignota" "https://atlasignota.org",
                     sponsor "Lanyon AI" "https://lanyon.ai",
                     sponsor "Astrio Labs" "https://www.astriolabs.com" ],
