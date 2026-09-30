@@ -77,7 +77,7 @@ def vibecheck : Page Route :=
                   [ sponsor "Theorem" "https://theorem.dev",
                     sponsor "workers.io" "https://workers.io",
                     sponsor "Anthropic" "https://www.anthropic.com",
-                    sponsor "The GP" "https://www.thegp.com",
+                    sponsor "TheGP" "https://www.thegp.com",
                     sponsor "omni.co" "https://omni.co",
                     sponsor "Prime Intellect" "https://www.primeintellect.ai",
                     sponsor "Math Inc" "https://www.math.inc",
