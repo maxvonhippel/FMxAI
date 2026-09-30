@@ -17,10 +17,14 @@ def role (heading : String) (body : List (Node Route .phrasing)) : Node Route .f
 def sponsor (name url : String) : Node Route .flow :=
   ext' [.cls "sponsor"] url [name]
 
+/-- The venue, 447 Battery St, on Google Maps. -/
+def vibecheckVenueMapUrl : String :=
+  "https://maps.google.com/?q=447+Battery+St,+San+Francisco,+CA"
+
 /-- The Vibecheck hackathon page. The prose follows the sign-up form. -/
 def vibecheck : Page Route :=
   { title := "Vibecheck — the usable formal methods hackathon"
-    description := "Vibecheck: a hackathon on whether formal methods are ready for real-world software. Build a piece of production software and formally verify it. Weekend of November 1, 2026."
+    description := "Vibecheck: a hackathon on whether formal methods are ready for real-world software. Build a piece of production software and formally verify it. Weekend of November 1, 2026, at TheGP, 447 Battery St, San Francisco."
     body :=
       [ siteHeader "Vibecheck"
           ([ a [.href (.url "#about")] ["About"], a [.href (.url "#roles")] ["Take part"],
@@ -28,11 +32,12 @@ def vibecheck : Page Route :=
              a [.href (.route .home)] ["FMxAI"] ] ++ navTail),
         div [.cls "hero"]
           [ div [.cls "container"]
-              [ div [.cls "eyebrow"] ["Weekend of November 1, 2026"],
+              [ div [.cls "eyebrow"] ["Weekend of November 1, 2026 · TheGP, San Francisco"],
                 h1 [] ["Vibecheck"],
                 p [.cls "lede"] ["The usable formal methods hackathon. Build a piece of real-world production software, and formally verify it."],
                 div [.cls "facts"]
                   [ div [] [strong [] ["Date"], " ", span [] ["· Weekend of November 1, 2026"]],
+                    div [] [strong [] ["Where"], " ", span [] ["· ", ext vibecheckVenueMapUrl ["TheGP, 447 Battery St, San Francisco"]]],
                     div [] [strong [] ["Who"], " ", span [] ["· Competitors, experts and sponsors"]],
                     div [] [strong [] ["Experience"], " ", span [] ["· None required"]] ],
                 div [.cls "btn-row"]
