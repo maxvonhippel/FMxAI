@@ -13,6 +13,10 @@ open Sites Sites.Html Fmxai
 def role (heading : String) (body : List (Node Route .phrasing)) : Node Route .flow :=
   div [.cls "card"] [h3 [] [heading], p [] body]
 
+/-- A sponsor: its name, linking to its site. -/
+def sponsor (name url : String) : Node Route .flow :=
+  ext' [.cls "sponsor"] url [name]
+
 /-- The Vibecheck hackathon page. The prose follows the sign-up form. -/
 def vibecheck : Page Route :=
   { title := "Vibecheck — the usable formal methods hackathon"
@@ -20,7 +24,8 @@ def vibecheck : Page Route :=
     body :=
       [ siteHeader "Vibecheck"
           ([ a [.href (.url "#about")] ["About"], a [.href (.url "#roles")] ["Take part"],
-             a [.href (.url "#signup")] ["Sign up"], a [.href (.route .home)] ["FMxAI"] ] ++ navTail),
+             a [.href (.url "#signup")] ["Sign up"], a [.href (.url "#sponsors")] ["Sponsors"],
+             a [.href (.route .home)] ["FMxAI"] ] ++ navTail),
         div [.cls "hero"]
           [ div [.cls "container"]
               [ div [.cls "eyebrow"] ["Weekend of November 1, 2026"],
@@ -64,6 +69,24 @@ def vibecheck : Page Route :=
                 div [.cls "btn-row"]
                   [ ext' [.cls "btn"] vibecheckFormUrl ["Open the sign-up form ↗"] ],
                 p [.cls "mt-2"] ["Questions? Email ", a [.href (.url contactUrl)] ["fmxai@atlasignota.org"], "."] ] ],
+        «section» [.id "sponsors"]
+          [ div [.cls "container"]
+              [ h2 [] ["Sponsors"],
+                p [.cls "narrow"] ["Vibecheck is made possible by these organizations. Thank you."],
+                div [.cls "sponsors"]
+                  [ sponsor "Theorem" "https://theorem.dev",
+                    sponsor "workers.io" "https://workers.io",
+                    sponsor "Anthropic" "https://www.anthropic.com",
+                    sponsor "The GP" "https://www.thegp.com",
+                    sponsor "omni.co" "https://omni.co",
+                    sponsor "Prime Intellect" "https://www.primeintellect.ai",
+                    sponsor "Math Inc" "https://www.math.inc",
+                    sponsor "For-All" "https://for-all.dev",
+                    sponsor "Atlas Ignota" "https://atlasignota.org",
+                    sponsor "Lanyon AI" "https://lanyon.ai",
+                    sponsor "Astrio Labs" "https://www.astriolabs.com" ],
+                p [.cls "mt-2 narrow"] ["Want to sponsor too? ", a [.href (.url "#signup")] ["Sign up"],
+                  " as a sponsor, or email ", a [.href (.url contactUrl)] ["fmxai@atlasignota.org"], "."] ] ],
         siteFooter ] }
 
 end

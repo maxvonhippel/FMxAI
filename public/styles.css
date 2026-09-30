@@ -346,3 +346,26 @@ blockquote {
     margin-top: 1rem;
     text-align: center;
 }
+.sponsors {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 1rem;
+    margin-top: 1.75rem;
+}
+.sponsor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 5rem;
+    padding: 1rem 1.25rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    text-align: center;
+    color: var(--text);
+    transition: border-color 0.15s, color 0.15s;
+}
+.sponsor:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
