@@ -17,10 +17,14 @@ def role (heading : String) (body : List (Node Route .phrasing)) : Node Route .f
 def sponsor (name url : String) : Node Route .flow :=
   ext' [.cls "sponsor"] url [name]
 
+/-- The venue, 447 Battery St, on Google Maps. -/
+def vibecheckVenueMapUrl : String :=
+  "https://maps.google.com/?q=447+Battery+St,+San+Francisco,+CA"
+
 /-- The Vibecheck hackathon page. The prose follows the sign-up form. -/
 def vibecheck : Page Route :=
   { title := "Vibecheck — the usable formal methods hackathon"
-    description := "Vibecheck: a hackathon on whether formal methods are ready for real-world software. Build a piece of production software and formally verify it. Weekend of November 1, 2026."
+    description := "Vibecheck: a hackathon on whether formal methods are ready for real-world software. Build a piece of production software and formally verify it. Weekend of November 1, 2026, at TheGP, 447 Battery St, San Francisco."
     body :=
       [ siteHeader "Vibecheck"
           ([ a [.href (.url "#about")] ["About"], a [.href (.url "#roles")] ["Take part"],
@@ -28,11 +32,12 @@ def vibecheck : Page Route :=
              a [.href (.route .home)] ["FMxAI"] ] ++ navTail),
         div [.cls "hero"]
           [ div [.cls "container"]
-              [ div [.cls "eyebrow"] ["Weekend of November 1, 2026"],
+              [ div [.cls "eyebrow"] ["Weekend of November 1, 2026 · TheGP, San Francisco"],
                 h1 [] ["Vibecheck"],
                 p [.cls "lede"] ["The usable formal methods hackathon. Build a piece of real-world production software, and formally verify it."],
                 div [.cls "facts"]
                   [ div [] [strong [] ["Date"], " ", span [] ["· Weekend of November 1, 2026"]],
+                    div [] [strong [] ["Where"], " ", span [] ["· ", ext vibecheckVenueMapUrl ["TheGP, 447 Battery St, San Francisco"]]],
                     div [] [strong [] ["Who"], " ", span [] ["· Competitors, experts and sponsors"]],
                     div [] [strong [] ["Experience"], " ", span [] ["· None required"]] ],
                 div [.cls "btn-row"]
@@ -68,7 +73,7 @@ def vibecheck : Page Route :=
                 p [] ["If you're interested in participating, in any capacity, fill out the form. It asks about your availability, how you'd like to take part, your FM background, a few prior projects you're proud of, and whether there's something specific you want to build. No project idea is needed to sign up."],
                 div [.cls "btn-row"]
                   [ ext' [.cls "btn"] vibecheckFormUrl ["Open the sign-up form ↗"] ],
-                p [.cls "mt-2"] ["Questions? Email ", a [.href (.url contactUrl)] ["fmxai@atlasignota.org"], "."] ] ],
+                p [.cls "mt-2"] ["Questions? Email ", a [.href (.url contactUrl)] ["quinn@for-all.dev"], "."] ] ],
         «section» [.id "sponsors"]
           [ div [.cls "container"]
               [ h2 [] ["Sponsors"],
@@ -84,9 +89,11 @@ def vibecheck : Page Route :=
                     sponsor "Forall R&D" "https://for-all.dev",
                     sponsor "Atlas Ignota" "https://atlasignota.org",
                     sponsor "Lanyon AI" "https://lanyon.ai",
-                    sponsor "Astrio Labs" "https://www.astriolabs.com" ,
+                    sponsor "Astrio Labs" "https://astriolabs.com",
                     sponsor "OpenAI" "https://openai.com",
-                    sponsor "Harmonic" "https://www.harmonic.fun/" ],
+                    sponsor "Harmonic" "https://www.harmonic.fun/",
+                    sponsor "Party" "https://party.build",
+                    sponsor "Random Labs" "https://randomlabs.ai" ],
 
                 p [.cls "mt-2 narrow"] ["Want to sponsor too? ", a [.href (.url "#signup")] ["Sign up"],
                   " as a sponsor, or email ", a [.href (.url contactUrl)] ["quinn@for-all.dev"], "."] ] ],
