@@ -84,7 +84,7 @@ def vibecheck : Page Route :=
                     sponsor "For-All" "https://for-all.dev",
                     sponsor "Atlas Ignota" "https://atlasignota.org",
                     sponsor "Lanyon AI" "https://lanyon.ai",
-                    sponsor "Astrio Labs" "https://www.astriolabs.com" ],
+                    sponsor "Astrio Labs" "https://astriolabs.com" ],
                 p [.cls "mt-2 narrow"] ["Want to sponsor too? ", a [.href (.url "#signup")] ["Sign up"],
                   " as a sponsor, or email ", a [.href (.url contactUrl)] ["fmxai@atlasignota.org"], "."] ] ],
         siteFooter ] }
