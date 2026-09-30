@@ -40,7 +40,7 @@ def home : Page Route :=
               [ h2 [] ["The event series"],
                 p [.cls "narrow"] ["An invitation-only gathering of FM researchers, frontier AI labs, government research staff, startup founders, and funders — built for shared problem-scoping, not paper presentations. Organized by Atlas Computing."],
                 div [.cls "events"]
-                  [ eventCard "Upcoming" "upcoming" "Vibecheck" "Weekend of November 1, 2026"
+                  [ eventCard "Upcoming" "upcoming" "Vibecheck" "Weekend of November 1, 2026 · TheGP, San Francisco"
                       ["The usable formal methods hackathon: build a piece of real-world production software, and formally verify it. Competitors, experts and sponsors welcome."]
                       (some (.route .vibecheck, "Sign up for Vibecheck →")),
                     eventCard "Upcoming" "upcoming" "FMxAI 2027" "March 8–10, 2027 · London"

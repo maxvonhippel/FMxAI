@@ -73,7 +73,7 @@ def vibecheck : Page Route :=
                 p [] ["If you're interested in participating, in any capacity, fill out the form. It asks about your availability, how you'd like to take part, your FM background, a few prior projects you're proud of, and whether there's something specific you want to build. No project idea is needed to sign up."],
                 div [.cls "btn-row"]
                   [ ext' [.cls "btn"] vibecheckFormUrl ["Open the sign-up form ↗"] ],
-                p [.cls "mt-2"] ["Questions? Email ", a [.href (.url contactUrl)] ["fmxai@atlasignota.org"], "."] ] ],
+                p [.cls "mt-2"] ["Questions? Email ", a [.href (.url contactUrl)] ["quinn@for-all.dev"], "."] ] ],
         «section» [.id "sponsors"]
           [ div [.cls "container"]
               [ h2 [] ["Sponsors"],

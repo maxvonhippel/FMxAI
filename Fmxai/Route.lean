@@ -48,7 +48,7 @@ def fellowshipUrl : String :=
 /-- This repository. -/
 def sourceUrl : String := "https://github.com/maxvonhippel/FMxAI"
 /-- Where to express interest in the next edition. -/
-def contactUrl : String := "mailto:fmxai@atlasignota.org"
+def contactUrl : String := "mailto:quinn@for-all.dev"
 /-- The Vibecheck hackathon sign-up form. -/
 def vibecheckFormUrl : String :=
   "https://docs.google.com/forms/d/e/1FAIpQLSeD10bRGSgyzlZ0KS7YdnX85THZ4FASLeQMGIvkrNW7PKINzg/viewform"

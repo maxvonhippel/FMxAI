@@ -99,7 +99,7 @@ def y2026 : Page Route :=
               [ h2 [] ["This event has concluded"],
                 p [] ["FMxAI 2026 took place June 1–3, 2026 at SRI International, Menlo Park."],
                 p [] ["The next edition is planned for March 8–10, 2027 in London. There's no event page yet — to express interest in attending, email ",
-                  a [.href (.url contactUrl)] ["fmxai@atlasignota.org"], "."],
+                  a [.href (.url contactUrl)] ["quinn@for-all.dev"], "."],
                 h3 [.cls "mt-2"] ["Organization & support"],
                 p [] ["Organized by Atlas Computing, with funding support from Coefficient Giving, Halcyon Futures, Harmonic, and ARIA."],
                 p [] ["Interested in quarterly updates, or want more frequent news? Visit the ",
