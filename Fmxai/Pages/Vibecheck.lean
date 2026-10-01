@@ -93,7 +93,8 @@ def vibecheck : Page Route :=
                     sponsor "OpenAI" "https://openai.com",
                     sponsor "Harmonic" "https://www.harmonic.fun/",
                     sponsor "Party" "https://party.build",
-                    sponsor "Random Labs" "https://randomlabs.ai"
+                    sponsor "Random Labs" "https://randomlabs.ai",
+                    sponsor "Axiom" "https://axiommath.ai"
                   ],
                 p [.cls "mt-2 narrow"] ["Want to sponsor too? ", a [.href (.url "#signup")] ["Sign up"],
                   " as a sponsor, or email ", a [.href (.url contactUrl)] ["quinn@for-all.dev"], "."] ] ],
