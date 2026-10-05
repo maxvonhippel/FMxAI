@@ -81,7 +81,6 @@ def vibecheck : Page Route :=
                 div [.cls "sponsors"]
                   [ sponsor "Theorem" "https://theorem.dev",
                     sponsor "workers.io" "https://workers.io",
-                    sponsor "Anthropic" "https://www.anthropic.com",
                     sponsor "TheGP" "https://www.thegp.com",
                     sponsor "Omni" "https://omni.co",
                     sponsor "Prime Intellect" "https://www.primeintellect.ai",
