@@ -31,7 +31,7 @@ def y2026 : Page Route :=
                     div [] [strong [] ["Location"], " ", span [] ["· SRI International, Menlo Park, CA"]],
                     div [] [strong [] ["Access"], " ", span [] ["· Invitation only"]] ],
                 div [.cls "btn-row"]
-                  [ a [.cls "btn", .href (.url contactUrl)] ["Express interest in FMxAI 2027"],
+                  [ ext' [.cls "btn"] eoiFormUrl ["Express interest in FMxAI 2027 ↗"],
                     a [.cls "btn-ghost", .href (.url "#agenda")] ["View the agenda"] ] ] ],
         «section» [.id "results"]
           [ div [.cls "container narrow"]
@@ -98,8 +98,8 @@ def y2026 : Page Route :=
           [ div [.cls "container narrow"]
               [ h2 [] ["This event has concluded"],
                 p [] ["FMxAI 2026 took place June 1–3, 2026 at SRI International, Menlo Park."],
-                p [] ["The next edition is planned for March 8–10, 2027 in London. There's no event page yet — to express interest in attending, email ",
-                  a [.href (.url contactUrl)] ["quinn@for-all.dev"], "."],
+                p [] ["The next edition is planned for March 8–10, 2027 in London. There's no event page yet — to express interest in attending, fill out the ",
+                  ext eoiFormUrl ["expression of interest form"], "."],
                 h3 [.cls "mt-2"] ["Organization & support"],
                 p [] ["Organized by Atlas Computing, with funding support from Coefficient Giving, Halcyon Futures, Harmonic, and ARIA."],
                 p [] ["Interested in quarterly updates, or want more frequent news? Visit the ",

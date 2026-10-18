@@ -47,8 +47,11 @@ def fellowshipUrl : String :=
   "https://apartresearch.com/fellowships/the-secure-program-synthesis-fellowship"
 /-- This repository. -/
 def sourceUrl : String := "https://github.com/maxvonhippel/FMxAI"
-/-- Where to express interest in the next edition. -/
+/-- Who to email with questions. -/
 def contactUrl : String := "mailto:quinn@for-all.dev"
+/-- The expression-of-interest form for the next edition. -/
+def eoiFormUrl : String :=
+  "https://docs.google.com/forms/d/e/1FAIpQLSe0fvk-I-O0CnV0ISjcq5pPUb_lQSilmvsZtYWMEkUASonboQ/viewform"
 /-- The Vibecheck hackathon sign-up form. -/
 def vibecheckFormUrl : String :=
   "https://docs.google.com/forms/d/e/1FAIpQLSeD10bRGSgyzlZ0KS7YdnX85THZ4FASLeQMGIvkrNW7PKINzg/viewform"

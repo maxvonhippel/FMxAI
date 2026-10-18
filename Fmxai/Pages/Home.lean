@@ -33,7 +33,7 @@ def home : Page Route :=
                 h1 [] ["Proof-grade software, at the speed of AI."],
                 p [.cls "lede"] ["AI is making it cheap to write code and proofs; formal methods make it possible to trust them. The intersection is where verifiable, safety-critical systems get built — and it's badly under-coordinated. FMxAI brings the two communities into one room to scope what to build next."],
                 div [.cls "btn-row"]
-                  [ a [.cls "btn", .href (.url contactUrl)] ["Express interest in FMxAI 2027 →"],
+                  [ ext' [.cls "btn"] eoiFormUrl ["Express interest in FMxAI 2027 ↗"],
                     a [.cls "btn-ghost", .href (.route .vibecheck)] ["Vibecheck hackathon"] ] ] ],
         «section» [.id "events"]
           [ div [.cls "container"]
@@ -44,8 +44,8 @@ def home : Page Route :=
                       ["The usable formal methods hackathon: build a piece of real-world production software, and formally verify it. Competitors, experts and sponsors welcome."]
                       (some (.route .vibecheck, "Sign up for Vibecheck →")),
                     eventCard "Upcoming" "upcoming" "FMxAI 2027" "March 8–10, 2027 · London"
-                      ["There's no event page yet. Want to express interest in attending? Email ",
-                       a [.href (.url "mailto:fmxai@atlascomputing.org")] ["fmxai@atlascomputing.org"], "."]
+                      ["There's no event page yet. Want to express interest in attending? Fill out the ",
+                       ext eoiFormUrl ["expression of interest form"], "."]
                       none,
                     eventCard "Past" "past" "FMxAI 2026" "June 1–3, 2026 · SRI International, Menlo Park"
                       ["~80 people, two and a half days of shared problem-scoping at SRI. Speakers, agenda, and venue."]
