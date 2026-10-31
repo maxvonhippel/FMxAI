@@ -100,7 +100,8 @@ def vibecheck : Page Route :=
                     sponsor "Axiom" "https://axiommath.ai",
                     sponsor "Ulyssean" "https://ulyssean.com",
                     sponsor "Antithesis" "https://antithesis.com",
-                    sponsor "Datadog" "https://www.datadoghq.com"
+                    sponsor "Datadog" "https://www.datadoghq.com",
+                    sponsor "Apollo GraphQL" "https://www.apollographql.com"
                   ],
                 p [.cls "mt-2 narrow"] ["Want to sponsor too? ", a [.href (.url "#signup")] ["Sign up"],
                   " as a sponsor, or email ", a [.href (.url contactUrl)] ["quinn@for-all.dev"], "."] ] ],
