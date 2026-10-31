@@ -43,6 +43,10 @@ def vibecheck : Page Route :=
                 div [.cls "btn-row"]
                   [ ext' [.cls "btn"] vibecheckFormUrl ["Sign up ↗"],
                     a [.cls "btn-ghost", .href (.url "#about")] ["What is this?"] ],
+                div [.cls "callout"]
+                  [ p [] [strong [] ["Join the Zulip."], " This is the invitation to the Vibecheck Zulip server: ",
+                      ext vibecheckZulipUrl ["tinyurl.com/vibecheck2026"]],
+                    ext' [.cls "btn"] vibecheckZulipUrl ["Join the Zulip ↗"] ],
                 div [.cls "promo"]
                   [ iframe [.cls "promo-frame", .src (vibecheckPromoUrl ++ "#embed"),
                       .title "Vibecheck promo animation"] [],

@@ -55,6 +55,8 @@ def eoiFormUrl : String :=
 /-- The Vibecheck hackathon sign-up form. -/
 def vibecheckFormUrl : String :=
   "https://docs.google.com/forms/d/e/1FAIpQLSeD10bRGSgyzlZ0KS7YdnX85THZ4FASLeQMGIvkrNW7PKINzg/viewform"
+/-- The invitation to the Vibecheck Zulip server. -/
+def vibecheckZulipUrl : String := "https://tinyurl.com/vibecheck2026"
 /-- The promo animation: a hand-written canvas page under `public/`, embedded on the Vibecheck
 page with `#embed` (stage only) and linked on its own for the team to scrub and comment on. -/
 def vibecheckPromoUrl : String := "/vibecheck/promo.html"
