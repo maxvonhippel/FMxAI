@@ -90,7 +90,6 @@ def vibecheck : Page Route :=
                     sponsor "Atlas Ignota" "https://atlasignota.org",
                     sponsor "Lanyon AI" "https://lanyon.ai",
                     sponsor "Astrio Labs" "https://astriolabs.com",
-                    sponsor "OpenAI" "https://openai.com",
                     sponsor "Harmonic" "https://www.harmonic.fun/",
                     sponsor "Party" "https://party.build",
                     sponsor "Random Labs" "https://randomlabs.ai",
