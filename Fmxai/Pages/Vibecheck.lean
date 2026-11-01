@@ -97,7 +97,6 @@ def vibecheck : Page Route :=
                     sponsor "Harmonic" "https://www.harmonic.fun/",
                     sponsor "Party" "https://party.build",
                     sponsor "Random Labs" "https://randomlabs.ai",
-                    sponsor "Axiom" "https://axiommath.ai",
                     sponsor "Ulyssean" "https://ulyssean.com",
                     sponsor "Antithesis" "https://antithesis.com",
                     sponsor "Datadog" "https://www.datadoghq.com",
