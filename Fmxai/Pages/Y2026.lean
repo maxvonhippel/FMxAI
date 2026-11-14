@@ -101,7 +101,7 @@ def y2026 : Page Route :=
                 p [] ["The next edition is planned for March 8–10, 2027 in London. There's no event page yet — to express interest in attending, fill out the ",
                   ext eoiFormUrl ["expression of interest form"], "."],
                 h3 [.cls "mt-2"] ["Organization & support"],
-                p [] ["Organized by Atlas Computing, with funding support from Coefficient Giving, Halcyon Futures, Harmonic, and ARIA."],
+                p [] ["Organized by Atlas Computing (predecessor organization to Atlas Ignota), with funding support from Coefficient Giving, Halcyon Futures, Harmonic, and ARIA."],
                 p [] ["Interested in quarterly updates, or want more frequent news? Visit the ",
                   a [.href (.route .home)] ["FMxAI main page"], "."] ] ],
         «section» [.id "agenda"]

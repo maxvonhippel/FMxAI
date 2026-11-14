@@ -73,7 +73,7 @@ def y2025 : Page Route :=
         «section» [.id "organizers"]
           [ div [.cls "container narrow"]
               [ h2 [] ["Organization & support"],
-                p [] ["Organized by Atlas Computing, with funding support from the Beneficial AI Foundation."],
+                p [] ["Organized by Atlas Computing (predecessor organization to Atlas Ignota), with funding support from the Beneficial AI Foundation."],
                 p [.cls "mt-125"] [a [.cls "btn", .href (.route .y2026)] ["See FMxAI 2026 →"]] ] ],
         siteFooter ] }
 
